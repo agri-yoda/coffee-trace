@@ -1,0 +1,206 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+// Primary Color - #000000
+$client-primary: (
+  50 : #e0e0e0,
+  100 : #b3b3b3,
+  200 : #808080,
+  300 : #4d4d4d,
+  400 : #262626,
+  500 : #000000,
+  600 : #000000,
+  700 : #000000,
+  800 : #000000,
+  900 : #000000,
+  A100 : #a6a6a6,
+  A200 : #8c8c8c,
+  A400 : #737373,
+  A700 : #666666,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #ffffff,
+      A700 : #ffffff,
+  )
+);
+
+// Accent Color - #0A5DFF
+$client-accent: (
+  50 : #e2ecff,
+  100 : #b6ceff,
+  200 : #85aeff,
+  300 : #548eff,
+  400 : #2f75ff,
+  500 : #0a5dff,
+  600 : #0955ff,
+  700 : #074bff,
+  800 : #0541ff,
+  900 : #0330ff,
+  A100 : #ffffff,
+  A200 : #f2f4ff,
+  A400 : #bfc7ff,
+  A700 : #a6b1ff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+// Warn Color: #FF2D55
+$client-warn: (
+  50 : #ffe6eb,
+  100 : #ffc0cc,
+  200 : #ff96aa,
+  300 : #ff6c88,
+  400 : #ff4d6f,
+  500 : #ff2d55,
+  600 : #ff284e,
+  700 : #ff2244,
+  800 : #ff1c3b,
+  900 : #ff112a,
+  A100 : #ffffff,
+  A200 : #fff8f9,
+  A400 : #ffc5ca,
+  A700 : #ffacb3,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+// Purple Color - #624CE0
+$client-purple: (
+  50 : #eceafb,
+  100 : #d0c9f6,
+  200 : #b1a6f0,
+  300 : #9182e9,
+  400 : #7a67e5,
+  500 : #624ce0,
+  600 : #5a45dc,
+  700 : #503cd8,
+  800 : #4633d3,
+  900 : #3424cb,
+  A100 : #ffffff,
+  A200 : #d7d3ff,
+  A400 : #a8a0ff,
+  A700 : #9186ff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+// Success Color: #20C933
+$client-success: (
+    50 : #e4f9e7,
+    100 : #bcefc2,
+    200 : #90e499,
+    300 : #63d970,
+    400 : #41d152,
+    500 : #20c933,
+    600 : #1cc32e,
+    700 : #18bc27,
+    800 : #13b520,
+    900 : #0ba914,
+    A100 : #d6ffd8,
+    A200 : #a3ffa7,
+    A400 : #70ff76,
+    A700 : #57ff5d,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$client-theme: mat.define-light-theme((
+  color: (
+    primary: $client-primary,
+    accent: $client-accent,
+    warn: $client-warn,
+    purple: $client-purple,
+    success: $client-success
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($client-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
