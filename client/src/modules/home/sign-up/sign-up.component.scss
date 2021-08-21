@@ -1,0 +1,151 @@
+// Import Colors
+@import 'src/assets/scss/colors.scss';
+
+// Import Font
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap');
+
+.background {
+    height: 90vh;
+    background: linear-gradient(90deg, $ct-gray-s1 75%, $ct-gray-s2 25%);
+}
+
+.card{
+    position: relative;
+    min-width: 300px;
+    max-width: 500px;
+    min-height: 300px;
+    left: 55.07%;
+    right: 10.36%;
+    top: 10%;
+    bottom: 35%;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 2%;
+}
+
+.form-container{
+    width: 400 px; 
+    margin: 0 px auto; 
+    // padding: 5%;
+    // margin-top: 200 px
+}
+
+.form-field{
+    display: block;
+    width: 100%;
+    // margin: 1% !important;
+}
+
+.submit-btn {
+    background: $ct-blue !important;
+    width: 100%;
+    // margin: 1% !important;
+}
+
+.social-btn {
+    outline-color: $ct-blue !important;
+    border: $ct-blue solid 1px !important;
+    width: 48% !important;
+    // margin: 1% !important;
+} 
+
+.social-btn:hover{
+    color: white !important;
+    background: $ct-blue !important;
+    border: white solid 1px !important;
+}
+
+.social{
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+}
+
+mat-checkbox{
+    color: #3E4462;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 26px;
+    letter-spacing: -0.3px;
+    margin-bottom: 5% !important;
+}
+
+.banner-text {
+    position: absolute;
+    left: 12%;
+    right: 57.86%;
+    top: 27%;
+    bottom: 53.52%;
+
+    /* Display / 02 */
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 56px;
+    line-height: 62px;
+    /* or 111% */
+
+    letter-spacing: -2.4px;
+
+    /* Dark */
+
+    color: #18214D;
+}
+
+.banner-para {
+    margin-top: 2%;
+    position: absolute;
+    left: 12%;
+    right: 64.64%;
+    top: 48.05%;
+    bottom: 46.88%;
+
+    /* Paragraph / 02 */
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 26px;
+    /* or 144% */
+
+    letter-spacing: -0.3px;
+
+    /* Paragraph */
+
+    color: #3E4462;
+}
+
+/* Product of the Year */
+.product-year {
+
+    position: absolute;
+    height: 30px;
+    left: 12%;
+    right: 70%;
+    top: calc(50% - 30px/2 - 319px);
+
+    /* Label / 01 */
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    /* identical to box height, or 136% */
+
+    letter-spacing: -0.55px;
+
+    /* Dark */
+
+    color: #18214D;
+}
+
+span {
+    display: flex;
+    flex-direction: row-reverse;
+    cursor: pointer;
+    margin-bottom: 2%;
+}

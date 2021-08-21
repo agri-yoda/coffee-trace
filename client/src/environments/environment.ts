@@ -2,8 +2,17 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// DNS Details
+const url = {
+  protocol: `http`, // standard protocol
+  domain: `localhost`, // your domain name where application is supposed to be visible
+  websocket: `ws` // wss in case of https protocol, else pass ws here
+}
+
 export const environment = {
-  production: false
+  production: false,
+  BASE_URL: `${url.protocol}://${url.domain}:3000`,
+  BASE_API_URL: `${url.protocol}://${url.domain}:3000/api/v1`,
 };
 
 /*

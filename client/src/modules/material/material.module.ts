@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
+// Reactive Forms Module
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+
 // Material Form Controls
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { MatCheckboxModule } from '@angular/material/checkbox'
@@ -48,6 +51,17 @@ import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatSortModule } from '@angular/material/sort'
 import { MatTableModule } from '@angular/material/table'
 
+// Cdk Modules
+import { A11yModule } from '@angular/cdk/a11y'
+import { ClipboardModule } from '@angular/cdk/clipboard'
+import { DragDropModule } from '@angular/cdk/drag-drop'
+import { PortalModule } from '@angular/cdk/portal'
+import { ScrollingModule } from '@angular/cdk/scrolling'
+import { CdkStepperModule } from '@angular/cdk/stepper'
+import { CdkTableModule } from '@angular/cdk/table'
+import { CdkTreeModule } from '@angular/cdk/tree'
+import { MatNativeDateModule } from '@angular/material/core'
+
 @NgModule({
   declarations: [],
   imports: [
@@ -86,7 +100,18 @@ import { MatTableModule } from '@angular/material/table'
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule, 
+    A11yModule,
+    ClipboardModule,
+    DragDropModule,
+    PortalModule,
+    ScrollingModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -123,7 +148,18 @@ import { MatTableModule } from '@angular/material/table'
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    A11yModule,
+    ClipboardModule,
+    DragDropModule,
+    PortalModule,
+    ScrollingModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class MaterialModule { }
