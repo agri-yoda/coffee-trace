@@ -1,1 +1,55 @@
-<p>main-navbar works!</p>
+<mat-sidenav-container (backdropClick)="this.sidenav.toggle()" [hasBackdrop]="'false'">
+    <mat-sidenav #sidenav (keydown.escape)="this.sidenav.toggle()" disableClose autosize [mode]="'side'">
+
+        <!-- Side Bar Menu starts -->
+        <app-side-bar *ngIf="this.user" class="nav navbar-nav navbar-left" [sideNav]="sidenav"></app-side-bar>
+        <!-- Side Bar Menu ends -->
+
+    </mat-sidenav>
+
+    <mat-sidenav-content style="height: 100vh;">
+        <mat-toolbar *ngIf="user">
+
+            <!-- Side Bar Navigation Toggle Starts -->
+            <button class="icon-button" mat-icon-button (click)="this.sidenav.toggle()" matTooltip="Toggle Menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <!-- Side Bar Navigation Toggle Ends -->
+
+            <!-- CT Logo -->
+            <!-- <mat-form-field class="example-full-width" appearance="legacy"> -->
+                <mat-icon>search</mat-icon>
+                <input placeholder="Search for data, users ...">
+            <!-- </mat-form-field>             -->
+            <!-- CT Logo -->
+
+
+            <!-- Spacer -->
+            <span class="spacer"></span>
+            <!-- Spacer -->
+
+            <!-- Dashboards -->
+            <button class="icon-button" mat-icon-button>
+                <mat-icon>grid_view</mat-icon>
+            </button>
+            <!-- Dashboards -->
+
+            <!-- Notifications -->
+            <button class="icon-button" mat-icon-button matTooltip="Toggle Notifications">
+                <mat-icon>notifications</mat-icon>
+            </button>
+            <!-- Notifications -->
+
+            <!-- Logout section -->
+            <button class="icon-button" mat-icon-button matTooltip="Logout" (click)="logout()">
+                <mat-icon>power_settings_new</mat-icon>
+            </button>
+            <!-- Logout section -->
+
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- <router-outlet></router-outlet> -->

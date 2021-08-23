@@ -1,0 +1,35 @@
+.spacer{
+    flex: 1 1 auto;
+}
+
+.tabs{
+    margin: 1%;
+    outline: none;
+}
+
+app-side-bar, mat-sidenav, mat-toolbar, mat-sidenav-container{
+    background: white;
+}
+
+.tabs:hover{
+    // background-color: #0052CC;
+    color: black;
+}
+
+input {
+    color: black;
+    opacity: 0.6;
+    outline: none;
+    border: hidden;
+    font-size: 16px;
+    width: 100% !important;
+}
+
+
+mat-toolbar{
+    border: 1px solid #EBEBEB
+}
+
+.icon-button{
+    background: white !important;
+}

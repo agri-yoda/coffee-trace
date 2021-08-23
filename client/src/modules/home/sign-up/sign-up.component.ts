@@ -45,7 +45,7 @@ export class SignUpComponent implements OnInit {
     let user = await this.signUp(this.form.value)
       .then((res: any) => {
         let user = res['user']
-        let token = res ['token']
+        let token = res['token']
         sessionStorage.setItem('token', token)
         sessionStorage.setItem('user', JSON.stringify(user))
         this.redirectUser()
@@ -57,7 +57,6 @@ export class SignUpComponent implements OnInit {
       let authService = this._Injector.get(AuthService)
       authService.signUp(userData)
         .then((res: any) => {
-          console.log(res)
           resolve(res)
         })
         .catch((err) => {
@@ -73,9 +72,9 @@ export class SignUpComponent implements OnInit {
     }
     if (this.redirectURL) {
       this._Router.navigateByUrl(this.redirectURL)
-        .catch(() => this._Router.navigate(['/dashboard/home']))
+        .catch(() => this._Router.navigate(['/dashboard']))
     } else {
-      this._Router.navigate(['/dashboard/home'])
+      this._Router.navigate(['/dashboard'])
     }
   }
 

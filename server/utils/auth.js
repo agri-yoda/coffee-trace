@@ -8,7 +8,7 @@ const { SendError } = require('./sendError')
 const { Auth } = require('../api/models')
 
 // Redis connection
-const { getRedisClient } = require('../redis')
+// const { getRedisClient } = require('../redis')
 
 /**
  * This function is responsible for verifying the token

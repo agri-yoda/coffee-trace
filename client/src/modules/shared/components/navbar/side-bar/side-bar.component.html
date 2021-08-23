@@ -1,1 +1,46 @@
-<p>side-bar works!</p>
+<nav id="sidebar" *ngIf="!checkEmptyObject(user)">
+
+    <!-- Sidebar Header starts -->
+    <div class="sidebar-header">
+        <a [routerLink]="['/dashboard', 'myspace', 'inbox']" routerLinkActive="router-link-active"
+            (click)="this.sideNav.toggle()">
+        </a>
+        <div id="dismiss">
+            <i class="material-icons" (click)="this.sideNav.toggle()">close</i>
+        </div>
+    </div>
+    <!-- Sidebar Header ends -->
+
+    <div class="menu-options">
+        <ul class="list-unstyled components">
+            <li>
+                <a class="nav-link" [routerLink]="['/dashboard', 'home']" routerLinkActive="router-link-active">
+                    <mat-icon>dashboard</mat-icon>
+                    Dashboard
+                </a>
+            </li>
+        </ul>
+        <hr>
+            <ul class="list-unstyled">
+                <li>
+                    <!-- USER PROFILE BADGE STARTS -->
+                    <a class="nav-link">
+                        <mat-icon>account_circle</mat-icon>
+                        My Account
+                    </a>
+                    <!-- USER PROFILE BADGE ENDS -->
+                </li>
+            </ul>
+        <hr>
+        <ul class="list-unstyled">
+            <li>
+                <!-- USER PROFILE BADGE STARTS -->
+                <a class="nav-link">
+                    <mat-icon>settings</mat-icon>
+                    Settings
+                </a>
+                <!-- USER PROFILE BADGE ENDS -->
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -14,10 +14,10 @@ dotenv.config()
 const { connectDatabase } = require('./db')
 
 // Redis connection
-const { getRedisClient } = require('./redis')
+// const { getRedisClient } = require('./redis')
 
 // Cache Queries
-const { cacheQuery } = require('./cache')
+// const { cacheQuery } = require('./cache')
 
 // Connect Database
 connectDatabase()
@@ -32,11 +32,11 @@ connectDatabase()
         // Environment State Variable
         const env = process.env.NODE_ENV
 
-        // Connect Redis
-        const redis = getRedisClient()
+        // // Connect Redis
+        // const redis = getRedisClient()
 
-        // Create Cache
-        cacheQuery(redis)
+        // // Create Cache
+        // cacheQuery(redis)
 
         // Creating Microservice Server
         const server = http.createServer(app)

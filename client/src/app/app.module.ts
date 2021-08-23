@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // Http Client Module
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 // NGX UI Loader Module
 import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from "ngx-ui-loader";
@@ -18,9 +18,11 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from "ngx-ui-loader";
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { MaterialModule } from 'src/modules/material/material.module';
 
-
 // Configs
 import config from 'src/configs/ngx-ui-config';
+
+// Interceptors
+import { AuthInterceptor } from 'src/modules/shared/interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -58,6 +60,9 @@ import config from 'src/configs/ngx-ui-config';
       provide: LocationStrategy,
       useClass: PathLocationStrategy
     },
+
+    // Interceptors
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
