@@ -72,9 +72,9 @@ export class SignUpComponent implements OnInit {
     }
     if (this.redirectURL) {
       this._Router.navigateByUrl(this.redirectURL)
-        .catch(() => this._Router.navigate(['/dashboard']))
+        .catch(() => this._Router.navigate(['/saas/dashboard']))
     } else {
-      this._Router.navigate(['/dashboard'])
+      this._Router.navigate(['/saas/dashboard'])
     }
   }
 

@@ -23,12 +23,12 @@ router.post('/', ProjectControllers.createProject)
 router.get('/:projectId', ProjectControllers.getProject)
 
 // Update Project
-router.post('/:projectId', ProjectControllers.updateProject)
+router.put('/:projectId', ProjectControllers.updateProject)
 
 // Get 20 recent projects
 router.get('/', ProjectControllers.getRecentProjects)
 
-// Get next recent projects
+// Get next 5 recent projects
 router.get('/next/:lastProjectId', ProjectControllers.getNextRecentProjects)
 
 // Export Router

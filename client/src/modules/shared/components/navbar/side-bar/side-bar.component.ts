@@ -13,6 +13,9 @@ export class SideBarComponent implements OnInit {
   // SideNav as the input
   @Input() sideNav: MatSidenav
 
+  // Is Expanded Variable for sidenav status
+  isExpanded = false
+
   user = JSON.parse(sessionStorage.getItem('user') + "") || {}
 
   ngOnInit(): void {

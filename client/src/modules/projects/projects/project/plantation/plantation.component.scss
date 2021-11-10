@@ -1,0 +1,23 @@
+.full-width {
+    width: 90% !important;
+}
+
+.window {
+    // margin-left: 5% !important;
+    display: flex;
+    justify-content: space-around;
+}
+
+mat-card {
+    // margin-left: 5% !important;
+    width: 90% !important;
+    height: 300px;
+}
+
+.upload-btn {
+    margin-left: 5% !important;
+}
+
+button {
+    margin-right: 5% !important;
+}

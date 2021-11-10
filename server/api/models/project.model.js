@@ -19,8 +19,19 @@ const ProjectSchema = new Schema({
         default: 'New Project',
         required: true
     },
-    description: {
-        type: String
+    plantation: {
+        description: {
+            type: String
+        },
+        area: {
+            type: Number
+        },
+        altitude: {
+            type: Number
+        },
+        rainfall: {
+            type: Number
+        }
     },
     _owner: {
         type: Schema.Types.ObjectId,

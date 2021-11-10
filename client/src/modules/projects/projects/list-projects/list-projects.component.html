@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <app-create-project (project)="newProject($event)"></app-create-project>
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
+    <ng-container *ngIf="projects.length == 0">
+        <h1 class="loading-placeholder-header">No listed projects yet ...</h1>
+        <img class="loading-placeholder" width="100%" height="100%" src="assets/svgs/no_projects.svg">
+    </ng-container>
+
+    <div class="row" *ngIf="projects.length > 0">
+        <div class="col-md-3" *ngFor="let project of projects; let index = index">
+            <app-project-card [name]="project?.project_name" [routerLink]="['/saas', 'projects', project?._id, 'plantation']"></app-project-card>
+        </div>
+    </div>
+</div>

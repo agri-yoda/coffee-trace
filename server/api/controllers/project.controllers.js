@@ -49,7 +49,7 @@ const ProjectControllers = {
             // Fetch the data from the body
             const { project_name } = req.body
 
-            ProjectService.createProject(project_name)
+            ProjectService.createProject(project_name, req.user._id)
                 .then((data) => {
 
                     // Send Status 200 response
@@ -76,7 +76,7 @@ const ProjectControllers = {
     async getRecentProjects(req, res, next) {
         try {
 
-            ProjectService.getAllProjects()
+            ProjectService.getAllProjects(req.user._id)
                 .then((data) => {
 
                     // Send Status 200 response
@@ -106,7 +106,7 @@ const ProjectControllers = {
             // Fetch the data from the params
             const { lastProjectId } = req.params
 
-            ProjectService.getNextProjects(lastProjectId)
+            ProjectService.getNextProjects(lastProjectId, req.user._id)
                 .then((data) => {
 
                     // Send Status 200 response
@@ -140,7 +140,7 @@ const ProjectControllers = {
             // Fetch the data from the body
             const { project } = req.body
 
-            ProjectService.updateProject(projectId, project)
+            ProjectService.updateProject(projectId, project, req.user._id)
                 .then((data) => {
 
                     // Send Status 200 response

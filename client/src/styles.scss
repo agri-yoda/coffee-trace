@@ -1,6 +1,9 @@
 // Custom Theming for Angular Material
 @use '~@angular/material' as mat;
 
+// Original Surfer Font
+@import url('https://fonts.googleapis.com/css?family=Original Surfer');
+
 // Import Themeing
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
@@ -218,13 +221,114 @@ $client-green: (
   )
 );
 
+// Paradise Pink - #EF476F
+$client-paradise-pink : (
+  50 : #fde9ee,
+  100 : #fac8d4,
+  200 : #f7a3b7,
+  300 : #f47e9a,
+  400 : #f16385,
+  500 : #ef476f,
+  600 : #ed4067,
+  700 : #eb375c,
+  800 : #e82f52,
+  900 : #e42040,
+  A100 : #ffffff,
+  A200 : #ffe8eb,
+  A400 : #ffb5c0,
+  A700 : #ff9caa,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  ));
+
+  // Blue-RYB - #004FFF
+  $client-blue-ryb: (
+    50 : #e0eaff,
+    100 : #b3caff,
+    200 : #80a7ff,
+    300 : #4d84ff,
+    400 : #2669ff,
+    500 : #004fff,
+    600 : #0048ff,
+    700 : #003fff,
+    800 : #0036ff,
+    900 : #0026ff,
+    A100 : #ffffff,
+    A200 : #f2f3ff,
+    A400 : #bfc5ff,
+    A700 : #a6aeff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// Middle Red - #D7907B
+$client-middle-red: (
+    50 : #faf2ef,
+    100 : #f3ded7,
+    200 : #ebc8bd,
+    300 : #e3b1a3,
+    400 : #dda18f,
+    500 : #d7907b,
+    600 : #d38873,
+    700 : #cd7d68,
+    800 : #c7735e,
+    900 : #be614b,
+    A100 : #ffffff,
+    A200 : #ffeae5,
+    A400 : #ffc0b3,
+    A700 : #ffab99,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $client-theme: mat.define-light-theme((
   color: (
     primary: mat-palette($client-primary),
     accent: mat-palette($client-green),
-    warn: mat-palette($client-warn),
+    warn: mat-palette($client-paradise-pink),
   )
 ));
 
@@ -235,7 +339,10 @@ $client-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { 
+  height: 100%;
+  background: #000 !important; 
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // Material Icon
@@ -246,4 +353,28 @@ mat-icon{
 .same-line {
   display: flex;
   justify-content: space-between;
+}
+
+.loading-placeholder-header {
+  font-family: 'Original Surfer' !important;
+  font-size: 30px !important;
+  color: #025959 !important;
+  font-weight: bold !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 2rem !important;
+}
+
+.loading-placeholder {
+  display: block !important;
+  margin: 0 auto !important;
+  max-width: 50% !important;
+  max-height: 50% !important;
+  margin-top: 2rem !important;
+}
+
+.mat-blue-ryb {
+  background-color: #004FFF !important;
+  color: #ffffff !important;
 }

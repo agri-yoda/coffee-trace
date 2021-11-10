@@ -35,13 +35,13 @@ const ProjectService = {
      * @param {*} project_name 
      * @returns 
      */
-    async createProject(project_name) {
+    async createProject(project_name, requestUserId) {
         return new Promise(async (resolve, reject) => {
             try {
 
                 // Project Data
                 const projectData = {
-                    _owner: req.user._id,
+                    _owner: requestUserId,
                     project_name: project_name
                 }
 
@@ -63,16 +63,19 @@ const ProjectService = {
      * This function is responsible for fetching 20 recent projects for currently loggedIn user
      * @returns 
      */
-    async getAllProjects() {
+    async getAllProjects(requestUserId) {
         return new Promise(async (resolve, reject) => {
             try {
 
+                // Projects array
+                let projects = []
+                
                 // Find the Projects
-                const projects = await Project.find({
-                    _owner: res.user._id
+                projects = await Project.find({
+                    _owner: requestUserId
                 })
                     .limit(20)
-                    .sort('-created_date')
+                    .sort('-created_date') || []
 
                 // Resolve the promise
                 resolve(projects)
@@ -89,14 +92,14 @@ const ProjectService = {
      * This function is responsible for fetching next 5 recent projects for currently loggedIn user
      * @returns 
      */
-    async getNextProjects(lastProjectId) {
+    async getNextProjects(lastProjectId, requestUserId) {
         return new Promise(async (resolve, reject) => {
             try {
 
                 // Find the Projects
                 const projects = await Project.find({
                     _id: { $lte: lastProjectId },
-                    _owner: res.user._id
+                    _owner: requestUserId
                 })
                     .limit(5)
                     .sort('-created_date')
@@ -118,13 +121,14 @@ const ProjectService = {
      * @param {*} projectData 
      * @returns 
      */
-    async updateProject(projectId, projectData) {
+    async updateProject(projectId, projectData, requestUserId) {
         return new Promise(async (resolve, reject) => {
             try {
 
                 // Update the Project Data
-                const project = await Project.findByIdAndUpdate({
-                    _id: projectId
+                const project = await Project.findByOneAndUpdate({
+                    _id: projectId,
+                    _owner: requestUserId
                 }, {
                     $set: projectData
                 }, {

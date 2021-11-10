@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="window">
+            <mat-form-field appearance="outline" class="col-md-3">
+                <mat-label>Project ID</mat-label>
+                <input matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
+                <mat-icon matSuffix>fingerprint</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-md-8">
+                <mat-label>Project Name</mat-label>
+                <input matInput [(ngModel)]="project.project_name" placeholder="Project Name">
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="window mt-4">
+        <h2>Key Documents</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <button mat-raised-button color="blue-ryb">
+                <mat-icon>cloud_upload</mat-icon> Upload Files
+            </button>
+        </div>
+    </div>
+    <div class="no-files">
+        <img height="50%" width="40%" src="assets/svgs/no_files.svg">
+    </div>
+</div>

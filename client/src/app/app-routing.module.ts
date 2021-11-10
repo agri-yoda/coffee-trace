@@ -21,11 +21,11 @@ const routes: Routes = [
     canActivate: [NavigationGuard],
   },
 
-  // 'dashboard' ROUTE
+  // 'saas' ROUTE
   {
-    path: 'dashboard',
-    loadChildren: () => import('src/modules/dashboard/dashboard.module')
-      .then((module) => module.DashboardModule),
+    path: 'saas',
+    loadChildren: () => import('src/modules/saas/saas.module')
+      .then((module) => module.SaasModule),
     canActivate: [AuthGuard],
   },
 
