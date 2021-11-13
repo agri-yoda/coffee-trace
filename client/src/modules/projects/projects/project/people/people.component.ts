@@ -3,11 +3,11 @@ import { BehaviorSubject } from 'rxjs';
 import { UtilityService } from 'src/modules/shared/services/utility.service';
 
 @Component({
-  selector: 'app-files',
-  templateUrl: './files.component.html',
-  styleUrls: ['./files.component.scss']
+  selector: 'app-people',
+  templateUrl: './people.component.html',
+  styleUrls: ['./people.component.scss']
 })
-export class FilesComponent implements OnInit {
+export class PeopleComponent implements OnInit {
 
   constructor(private _Injector: Injector) { }
 
@@ -21,7 +21,7 @@ export class FilesComponent implements OnInit {
   isLoading$ = new BehaviorSubject(false);
 
   async ngOnInit() {
-    
+
     // Start the Loader
     this.isLoading$.next(true)
 
@@ -31,5 +31,4 @@ export class FilesComponent implements OnInit {
     // Stop the Loader
     this.isLoading$.next(false)
   }
-
 }

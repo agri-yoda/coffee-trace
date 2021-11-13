@@ -1,4 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { UtilityService } from 'src/modules/shared/services/utility.service';
 
 @Component({
@@ -16,8 +17,19 @@ export class CoffeeComponent implements OnInit {
   // Utility Service
   utilityService = this._Injector.get(UtilityService)
 
+  // Is loading Behaviour
+  isLoading$ = new BehaviorSubject(false);
+
   async ngOnInit() {
+    
+    // Start the Loader
+    this.isLoading$.next(true)
+
+    // Fetch the Project
     this.project = await this.utilityService.getProject()
+
+    // Stop the Loader
+    this.isLoading$.next(false)
   }
 
 }

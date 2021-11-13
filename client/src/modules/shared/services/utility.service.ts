@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UtilityService {
 
-  constructor() { }
+  constructor(private _Router: Router) { }
 
   // Project Data Behaviour Subject
   public projectDataSource = new BehaviorSubject<any>({})
@@ -16,7 +17,7 @@ export class UtilityService {
    * Updates the Project Data observable via feeding the data
    * @param project 
    */
-  updateProject(project: any){
+  updateProject(project: any) {
     this.projectDataSource.next(project)
   }
 
@@ -24,14 +25,48 @@ export class UtilityService {
    * Gets the current project data
    * @returns 
    */
-  getProject(){
-    return new Promise((resolve)=>{
+  getProject() {
+    return new Promise((resolve) => {
       this.projectData
-      .subscribe((res: any) => {
-        if(JSON.stringify(res) != JSON.stringify({}) && JSON.stringify(res) != JSON.stringify(null)){
-          resolve(res)
-        }
+        .subscribe((res: any) => {
+          if (JSON.stringify(res) != JSON.stringify({}) && JSON.stringify(res) != JSON.stringify(null)) {
+            
+            // Fetch the status
+            let status = res['active']
+
+            // Redirect accordingly
+            if(status === false)
+              this._Router.navigate(['/saas', 'projects', res['_id'], 'settings'])
+
+            // Resolve the project
+            resolve(res)
+          }
+        })
+    })
+  }
+
+  /**
+   * This functions checks, if the current project is active or not
+   * @returns 
+   */
+   checkProjectIsActive() {
+    return new Promise<boolean>((resolve, reject)=>{
+      this.getProject()
+      .then((res: any)=>{
+        resolve(res['active'])
+      })
+      .catch(()=>{
+        reject(false)
       })
     })
+  }
+
+  /**
+   * Check the empty object status
+   * @param object 
+   * @returns 
+   */
+  checkEmptyObject(object: any) {
+    return JSON.stringify("{}") == JSON.stringify(object)
   }
 }

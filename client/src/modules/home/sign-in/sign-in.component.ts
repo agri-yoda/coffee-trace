@@ -26,7 +26,7 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
 
-    // Initiliase the form 
+    // Initialise the form 
     this.form = this._FormBuilder.group({
       email: [null, [Validators.required, Validators.pattern(emailRegex)]],
       password: [null, Validators.required]

@@ -41,6 +41,16 @@ const UserSchema = new Schema({
         type: String,
         default: 'default_user.png'
     },
+    projects: [{
+        _id: {
+            type: Schema.Types.ObjectId,
+            ref: 'Project'
+        },
+        current_user_invited: {
+            type: Boolean,
+            default: true
+        }
+    }],
     role: {
         type: String,
         required: true,

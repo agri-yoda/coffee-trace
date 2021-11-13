@@ -13,6 +13,8 @@ import { PlantationComponent } from './projects/project/plantation/plantation.co
 import { CoffeeComponent } from './projects/project/coffee/coffee.component';
 import { DashboardComponent } from './projects/project/dashboard/dashboard.component';
 import { FilesComponent } from './projects/project/files/files.component';
+import { PeopleComponent } from './projects/project/people/people.component';
+import { SettingsComponent } from './projects/project/settings/settings.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { FilesComponent } from './projects/project/files/files.component';
     PlantationComponent,
     CoffeeComponent,
     DashboardComponent,
-    FilesComponent
+    FilesComponent,
+    PeopleComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,

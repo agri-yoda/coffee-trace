@@ -341,7 +341,6 @@ $client-theme: mat.define-light-theme((
 
 html, body { 
   height: 100%;
-  background: #000 !important; 
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -377,4 +376,24 @@ mat-icon{
 .mat-blue-ryb {
   background-color: #004FFF !important;
   color: #ffffff !important;
+}
+
+mat-spinner {
+  display: flex !important;
+  justify-content: center !important;
+  margin: 0 auto !important;
+}
+
+// Avatar Image
+.feed-avatar {
+  width: 100px;
+  height: 150px;
+  border-radius: 50%;
+  transform: scale(.75, .5);
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+.feed-avatar:hover {
+  transform: scale(0.9, 0.6);
 }

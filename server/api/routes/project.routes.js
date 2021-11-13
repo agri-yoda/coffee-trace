@@ -25,6 +25,12 @@ router.get('/:projectId', ProjectControllers.getProject)
 // Update Project
 router.put('/:projectId', ProjectControllers.updateProject)
 
+// Remove Project
+router.delete('/:projectId', ProjectControllers.removeProject)
+
+// Get all archived projects
+router.get('/archived', ProjectControllers.getAllArchivedProjects)
+
 // Get 20 recent projects
 router.get('/', ProjectControllers.getRecentProjects)
 

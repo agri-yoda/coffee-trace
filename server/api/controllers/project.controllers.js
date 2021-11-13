@@ -95,6 +95,38 @@ const ProjectControllers = {
     },
 
     /**
+     * Get All Archived Project Controller
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     */
+     async getAllArchivedProjects(req, res, next) {
+        try {
+
+            return res.status(200).json({
+                message: 'Archived projects fetched successfully!',
+                // projects: data
+            })
+
+            ProjectService.getAllArchivedProjects(req.user._id)
+                .then((data) => {
+
+                    // Send Status 200 response
+                    return res.status(200).json({
+                        message: 'Archived projects fetched successfully!',
+                        projects: data
+                    })
+                })
+                .catch((error) => {
+                    return SendError(res, error)
+                })
+
+        } catch (error) {
+            return SendError(res, error)
+        }
+    },
+
+    /**
      * Get Next 5 Recent Project Controller
      * @param {*} req 
      * @param {*} res 
@@ -146,6 +178,37 @@ const ProjectControllers = {
                     // Send Status 200 response
                     return res.status(200).json({
                         message: 'Project updated successfully!',
+                        project: data
+                    })
+                })
+                .catch((error) => {
+                    return SendError(res, error)
+                })
+
+        } catch (error) {
+            return SendError(res, error)
+        }
+    },
+
+    /**
+     * Remove Project Controller
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     * @returns 
+     */
+     async removeProject(req, res, next) {
+        try {
+
+            // Fetch the data from the params
+            const { projectId } = req.params
+
+            ProjectService.removeProject(projectId, req.user._id)
+                .then((data) => {
+
+                    // Send Status 200 response
+                    return res.status(200).json({
+                        message: 'Project removed successfully!',
                         project: data
                     })
                 })

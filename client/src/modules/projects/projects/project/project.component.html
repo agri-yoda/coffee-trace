@@ -32,14 +32,16 @@
         <mat-icon>file_download</mat-icon> Files & Updates
     </button>
 
-    <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'people'" (click)="selectedRoute = 'people'">
+    <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'people'" (click)="selectedRoute = 'people'"
+    [routerLink]="['/saas', 'projects', this.projectId, 'people']">
         <mat-icon>person_add</mat-icon> People
     </button>
     <button mat-raised-button color="accent" *ngIf="selectedRoute == 'people'">
         <mat-icon>person_add</mat-icon> People
     </button>
 
-    <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'settings'" (click)="selectedRoute = 'settings'">
+    <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'settings'" (click)="selectedRoute = 'settings'"
+    [routerLink]="['/saas', 'projects', this.projectId, 'settings']">
         <mat-icon>settings</mat-icon> Settings
     </button>
     <button mat-raised-button color="accent" *ngIf="selectedRoute == 'settings'">

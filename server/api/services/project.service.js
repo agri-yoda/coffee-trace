@@ -1,5 +1,5 @@
 // Import Models
-const { Project } = require('../models')
+const { Project, User } = require('../models')
 
 // Project Service
 const ProjectService = {
@@ -48,6 +48,19 @@ const ProjectService = {
                 // Create the project
                 const project = await Project.create(projectData)
 
+                // Update User
+                const userProject = {
+                    _id: project._id,
+                    current_user_invited: false
+                }
+
+                // Pushing the project into user's schema
+                await User.findOneAndUpdate(
+                    { _id: requestUserId },
+                    { $push: { projects: userProject } },
+                    { upsert: true }
+                )
+
                 // Resolve the promise
                 resolve(project)
 
@@ -69,12 +82,44 @@ const ProjectService = {
 
                 // Projects array
                 let projects = []
-                
+
                 // Find the Projects
                 projects = await Project.find({
-                    _owner: requestUserId
+                    _owner: requestUserId,
+                    active: true,
                 })
                     .limit(20)
+                    .sort('-created_date') || []
+
+                // Resolve the promise
+                resolve(projects)
+
+            } catch (error) {
+
+                // Catch the error and reject the promise
+                reject({ error: error })
+            }
+        })
+    },
+
+    /**
+     * This function is responsible for fetching all archived projects for currently loggedIn user
+     * @returns 
+     */
+     async getAllArchivedProjects(requestUserId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+
+                console.log("check", requestUserId)
+
+                // Projects array
+                let projects = []
+
+                // Find the Projects
+                projects = await Project.find({
+                    _owner: requestUserId,
+                    active: false,
+                })
                     .sort('-created_date') || []
 
                 // Resolve the promise
@@ -99,6 +144,7 @@ const ProjectService = {
                 // Find the Projects
                 const projects = await Project.find({
                     _id: { $lte: lastProjectId },
+                    active: true,
                     _owner: requestUserId
                 })
                     .limit(5)
@@ -126,13 +172,47 @@ const ProjectService = {
             try {
 
                 // Update the Project Data
-                const project = await Project.findByOneAndUpdate({
+                const project = await Project.findOneAndUpdate({
                     _id: projectId,
                     _owner: requestUserId
                 }, {
                     $set: projectData
                 }, {
                     new: true
+                })
+
+                // Resolve the promise
+                resolve(project)
+
+            } catch (error) {
+
+                // Catch the error and reject the promise
+                reject({ error: error })
+            }
+        })
+    },
+
+    /**
+     * This function is responsible for removing a project
+     * @param {*} projectId 
+     * @param {*} requestUserId 
+     * @returns 
+     */
+    async removeProject(projectId, requestUserId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+
+                // Pulling from the project into user's schema
+                await User.updateMany(
+                    {},
+                    { $pull: { projects: { _id: projectId } } },
+                    { multi: true }
+                )
+
+                // Update the Project Data
+                const project = await Project.findOneAndRemove({
+                    _id: projectId,
+                    _owner: requestUserId
                 })
 
                 // Resolve the promise

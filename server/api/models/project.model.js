@@ -21,16 +21,38 @@ const ProjectSchema = new Schema({
     },
     plantation: {
         description: {
-            type: String
+            type: String,
+            default: "Your description!"
         },
         area: {
-            type: Number
+            type: Number,
+            default: 0
         },
         altitude: {
-            type: Number
+            type: Number,
+            default: 0
         },
         rainfall: {
-            type: Number
+            type: Number,
+            default: 0
+        },
+        region_and_bio: {
+            type: String,
+            default: "Your region and biodiversity!"
+        },
+        description_video: {
+            type: String,
+            default: 'default_vid'
+        },
+        csv: {
+            type: String,
+            default: 'default_csv'
+        }
+    },
+    coffee: {
+        csv: {
+            type: String,
+            default: 'default_csv'
         }
     },
     _owner: {
@@ -39,10 +61,12 @@ const ProjectSchema = new Schema({
     },
     invited_members: {
         type: Map,
+        default: new Map(),
         of: String,
     },
     joined_members: {
         type: Map,
+        default: new Map(),
         of: String,
     },
     profile_picture: {

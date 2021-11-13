@@ -33,6 +33,15 @@ export class ProjectsService {
   }
 
   /**
+   * This function is responsible for fetching all archive projects
+   * @returns first 20 projects
+   */
+   getAllArchivedProjects() {
+    return this._HTTP.get(this.BASE_API_URL + '/archive')
+      .toPromise()
+  }
+
+  /**
    * This function is responsible for fetching the first recent projects
    * @returns first 20 projects
    */
@@ -45,7 +54,7 @@ export class ProjectsService {
    * This function is responsible for fetching the project details
    * @returns project details
    */
-   getProject(projectId: any) {
+  getProject(projectId: any) {
     return this._HTTP.get(this.BASE_API_URL + `/${projectId}`)
       .toPromise()
   }
@@ -54,8 +63,17 @@ export class ProjectsService {
    * This function is responsible for updating the project details
    * @returns updates the project
    */
-   updateProject(projectId: any, projectData: any) {
-    return this._HTTP.put(this.BASE_API_URL + `/${projectId}`, projectData)
+  updateProject(projectId: any, projectData: any) {
+    return this._HTTP.put(this.BASE_API_URL + `/${projectId}`, { project: projectData })
+      .toPromise()
+  }
+
+  /**
+   * This function is responsible for removing the project
+   * @returns project details
+   */
+   removeProject(projectId: any) {
+    return this._HTTP.delete(this.BASE_API_URL + `/${projectId}`)
       .toPromise()
   }
 }
