@@ -19,14 +19,18 @@
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
-                            Plantation Video
+                            Plantation
                         </mat-panel-title>
                         <mat-panel-description>
                             Your plantation media!
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <ng-container *ngIf="project.plantation.description_video == 'default_vid'">
+                        <h2 class="loading-placeholder-header">Showcase your plantation here ...</h2>
                         <img class="loading-placeholder" src="assets/svgs/no_video.svg">
+                    </ng-container>
+                    <ng-container *ngIf="project.plantation.description_video != 'default_vid'">
+                        <iframe [src]="project.plantation.description_video | safe: 'resourceUrl'"></iframe>
                     </ng-container>
                 </mat-expansion-panel>
                 <!-- <mat-card>
@@ -38,12 +42,15 @@
                 <ng-container *ngIf="project.plantation.csv == 'default_csv'">
                     <img class="loading-placeholder" src="assets/svgs/no_sheet.svg">
                 </ng-container>
-                <button mat-raised-button color="blue-ryb">
+                <button class="mt-4" mat-raised-button color="blue-ryb">
                     <mat-icon>cloud_download</mat-icon> Download Template
                 </button>
-                <button mat-raised-button color="blue-ryb">
+                <button class="mt-4" mat-raised-button color="blue-ryb" (click)="fileImportInput.click()">
                     <mat-icon>cloud_upload</mat-icon> Upload CSV
                 </button>
+                <input hidden type="file" #fileImportInput name="File Upload" id="csvFileUpload"
+                    (change)="fileChangeListener($event)" accept=".csv" />
+                <app-view-table *ngIf="(isFilePresent$ | async)" [data]="data" [columns]="columns"></app-view-table>
             </div>
         </div>
         <div class="col-md-4">

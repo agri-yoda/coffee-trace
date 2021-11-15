@@ -16,6 +16,7 @@ import { FilesComponent } from './projects/project/files/files.component';
 import { PeopleComponent } from './projects/project/people/people.component';
 import { SettingsComponent } from './projects/project/settings/settings.component';
 
+import { NgxCsvParserModule } from 'ngx-csv-parser';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SettingsComponent } from './projects/project/settings/settings.componen
   imports: [
     CommonModule,
     ProjectsRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxCsvParserModule
   ]
 })
 export class ProjectsModule { }

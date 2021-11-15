@@ -102,12 +102,7 @@ const ProjectControllers = {
      */
      async getAllArchivedProjects(req, res, next) {
         try {
-
-            return res.status(200).json({
-                message: 'Archived projects fetched successfully!',
-                // projects: data
-            })
-
+            
             ProjectService.getAllArchivedProjects(req.user._id)
                 .then((data) => {
 

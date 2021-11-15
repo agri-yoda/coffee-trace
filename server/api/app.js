@@ -30,8 +30,8 @@ app.use('/api/v1/auths', AuthRoutes)
 app.use('/api/v1/projects', ProjectRoutes)
 
 // Invalid routes handling middleware
-app.use((req, res, next) => {
-    const error = new Error('Not found!')
+app.all('*', (req, res, next) => {
+    const error = new Error('Not found, check your URL please!')
     error.status = 404
     next(error)
 })

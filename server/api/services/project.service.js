@@ -110,8 +110,6 @@ const ProjectService = {
         return new Promise(async (resolve, reject) => {
             try {
 
-                console.log("check", requestUserId)
-
                 // Projects array
                 let projects = []
 

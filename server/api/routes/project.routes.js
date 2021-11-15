@@ -16,26 +16,32 @@ router.use(Authorization.verifyAccessToken)
 // Verify If the current user isLoggedIn 
 router.use(Authorization.isLoggedIn)
 
-// Create Project
-router.post('/', ProjectControllers.createProject)
-
-// Get Project
-router.get('/:projectId', ProjectControllers.getProject)
-
-// Update Project
-router.put('/:projectId', ProjectControllers.updateProject)
-
-// Remove Project
-router.delete('/:projectId', ProjectControllers.removeProject)
-
 // Get all archived projects
 router.get('/archived', ProjectControllers.getAllArchivedProjects)
 
-// Get 20 recent projects
-router.get('/', ProjectControllers.getRecentProjects)
-
 // Get next 5 recent projects
 router.get('/next/:lastProjectId', ProjectControllers.getNextRecentProjects)
+
+// Route Definition
+router.route('/')
+
+        // Create Project 
+        .post(ProjectControllers.createProject)
+
+        // Get 20 recent projects
+        .get(ProjectControllers.getRecentProjects)
+
+// Route definition
+router.route('/:projectId')
+
+        // Get Project
+        .get(ProjectControllers.getProject)
+
+        // Update Project
+        .put(ProjectControllers.updateProject)
+
+        // Remove Project
+        .delete(ProjectControllers.removeProject)
 
 // Export Router
 module.exports = router

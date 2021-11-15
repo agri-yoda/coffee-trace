@@ -37,7 +37,7 @@ export class ProjectsService {
    * @returns first 20 projects
    */
    getAllArchivedProjects() {
-    return this._HTTP.get(this.BASE_API_URL + '/archive')
+    return this._HTTP.get(this.BASE_API_URL + '/archived')
       .toPromise()
   }
 

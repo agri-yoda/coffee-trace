@@ -11,26 +11,40 @@ import { MainNavbarComponent } from './components/navbar/main-navbar/main-navbar
 import { MainFooterComponent } from './components/navbar/main-footer/main-footer.component';
 import { SideBarComponent } from './components/navbar/side-bar/side-bar.component';
 
+// Pipes
+import { SafePipe } from './pipes/safe.pipe';
 
+// Hot Table Module
+import { HotTableModule } from '@handsontable/angular';
+
+// Custom Table Component
+import { CustomTableComponent } from './components/custom-table/custom-table.component';
+import { ViewTableComponent } from './components/view-table/view-table.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     MainNavbarComponent,
     MainFooterComponent,
-    SideBarComponent
+    SideBarComponent,
+    SafePipe,
+    CustomTableComponent,
+    ViewTableComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    HotTableModule
   ],
   exports: [
     NavbarComponent,
     MainNavbarComponent,
     MainFooterComponent,
     SideBarComponent,
-    MaterialModule
+    MaterialModule,
+    SafePipe,
+    ViewTableComponent
   ]
 })
 export class SharedModule { }
