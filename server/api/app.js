@@ -14,7 +14,7 @@ const morgan = require('morgan')
 const app = express()
 
 // Routes
-const { AuthRoutes, ProjectRoutes } = require('./routes')
+const { AuthRoutes, FileRoutes, ProjectRoutes } = require('./routes')
 
 // Cors middleware for origin and Headers
 app.use(cors())
@@ -27,6 +27,7 @@ app.use(morgan('dev'))
 
 // Correct REST naming
 app.use('/api/v1/auths', AuthRoutes)
+app.use('/api/v1/files', FileRoutes)
 app.use('/api/v1/projects', ProjectRoutes)
 
 // Invalid routes handling middleware
@@ -41,7 +42,7 @@ app.use((error, req, res, next) => {
     res.status(error.status || 500)
     res.json({
         error: {
-            message: error.message
+            message: JSON.stringify(error)
         }
     })
 })

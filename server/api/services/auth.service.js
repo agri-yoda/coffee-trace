@@ -100,7 +100,9 @@ const AuthService = {
                 }
 
                 // Create the signed token
-                const token = jwt.sign(user.toJSON(), process.env.JWT_ACCESS_KEY)
+                const token = jwt.sign(user.toJSON(), process.env.JWT_ACCESS_KEY, {
+                    expiresIn: process.env.JWT_ACCESS_TIME
+                })
 
                 // Log the auths
                 this.createAuthLog(token, user._id)

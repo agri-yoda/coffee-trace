@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/agri-yoda/coffee-trace#readme",
   "dependencies": {
+    "aws-sdk": "^2.1037.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",

@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Invite Users</h2>
+<div mat-dialog-content class="row">
+    <mat-form-field class="full-width copy-link" appearance="outline" matTooltipPosition="above" matTooltip="Copy Project Link" (click)="copyToClipboard()">
+        <mat-label class="copy-link">Project Link</mat-label>
+        <input class="copy-link" matInput [(ngModel)]="link" placeholder="Project Link" readonly>
+        <mat-icon class="copy-link" matSuffix>link</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="email" placeholder="Email address">
+        <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+    <!-- <img class="col-md-6" width="50%" height="50%" src="assets/svgs/new_project.svg"> -->
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea rows="10" matInput placeholder="Feel free to describe briefly about your listing ..."
+            [(ngModel)]="message"></textarea>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="accent">Invite!</button>
+</div>

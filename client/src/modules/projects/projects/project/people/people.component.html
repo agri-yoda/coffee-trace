@@ -16,13 +16,19 @@
                 </mat-form-field>
             </div>
             <div class="mt-4">
-                <button mat-raised-button color="blue-ryb">
+                <button mat-raised-button color="blue-ryb" (click)="openDialog()">
                     <mat-icon>person_add</mat-icon> Invite People
                 </button>
-                <mat-card class="mt-4">
+                <mat-tab-group dynamicHeight>
+                    <mat-tab label="Projects">
+                    </mat-tab>
+                    <mat-tab label="Archived Projects">
+                    </mat-tab>
+                </mat-tab-group>
+                <!-- <mat-card class="mt-4">
                     <mat-card-content>
                     </mat-card-content>
-                </mat-card>
+                </mat-card> -->
             </div>
         </div>
     </div>

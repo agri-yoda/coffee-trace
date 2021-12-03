@@ -17,6 +17,7 @@ import { PeopleComponent } from './projects/project/people/people.component';
 import { SettingsComponent } from './projects/project/settings/settings.component';
 
 import { NgxCsvParserModule } from 'ngx-csv-parser';
+import { InvitePeopleModalComponent } from './projects/project/people/invite-people-modal/invite-people-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgxCsvParserModule } from 'ngx-csv-parser';
     DashboardComponent,
     FilesComponent,
     PeopleComponent,
-    SettingsComponent
+    SettingsComponent,
+    InvitePeopleModalComponent
   ],
   imports: [
     CommonModule,

@@ -30,12 +30,12 @@ export class UtilityService {
       this.projectData
         .subscribe((res: any) => {
           if (JSON.stringify(res) != JSON.stringify({}) && JSON.stringify(res) != JSON.stringify(null)) {
-            
+
             // Fetch the status
             let status = res['active']
 
             // Redirect accordingly
-            if(status === false)
+            if (status === false)
               this._Router.navigate(['/saas', 'projects', res['_id'], 'settings'])
 
             // Resolve the project
@@ -49,15 +49,15 @@ export class UtilityService {
    * This functions checks, if the current project is active or not
    * @returns 
    */
-   checkProjectIsActive() {
-    return new Promise<boolean>((resolve, reject)=>{
+  checkProjectIsActive() {
+    return new Promise<boolean>((resolve, reject) => {
       this.getProject()
-      .then((res: any)=>{
-        resolve(res['active'])
-      })
-      .catch(()=>{
-        reject(false)
-      })
+        .then((res: any) => {
+          resolve(res['active'])
+        })
+        .catch(() => {
+          reject(false)
+        })
     })
   }
 
@@ -68,5 +68,23 @@ export class UtilityService {
    */
   checkEmptyObject(object: any) {
     return JSON.stringify("{}") == JSON.stringify(object)
+  }
+
+  /**
+   * This function is responsible for copying to clipboard
+   * @param val 
+   */
+  copyMessage(val: string) {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 }
