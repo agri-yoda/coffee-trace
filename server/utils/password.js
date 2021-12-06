@@ -1,5 +1,5 @@
 // Bcrypt Module
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 // Password Module
 const Password = {

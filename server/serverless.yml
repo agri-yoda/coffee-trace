@@ -1,0 +1,36 @@
+service: coffee-trace-server
+
+plugins:
+  - serverless-dotenv-plugin
+
+custom:
+  dotenv:
+    path: .env.production
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+  memorySize: 2048
+  timeout: 15
+  stage: production
+  region: ap-south-1
+  environment:
+    NODE_ENV: ${env.NODE_ENV}
+    JWT_ACCESS_KEY: ${env.JWT_ACCESS_KEY}
+    JWT_ACCESS_TIME: ${env.JWT_ACCESS_TIME}
+    DB_URI: ${env.DB_URI}
+    S3_BUCKET: ${env.S3_BUCKET}
+
+functions:
+  app:
+    handler: lambda.universal
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true

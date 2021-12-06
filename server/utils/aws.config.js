@@ -1,11 +1,18 @@
-// DotEnv Module
-const dotenv = require('dotenv')
-
 // AWS Module
 const AWS = require('aws-sdk')
 
-// Load the config from the .env file
-dotenv.config()
+// Environment State Variable
+const env = process.env.NODE_ENV
+
+// Check the production environment variable statw
+if (env != 'production') {
+
+    // DotEnv Module
+    const dotenv = require('dotenv')
+
+    // Load the config from the .env file
+    dotenv.config()
+}
 
 // Set the region
 AWS.config.update({ region: process.env.AWS_REGION })

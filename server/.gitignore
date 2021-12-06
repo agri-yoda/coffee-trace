@@ -1,6 +1,9 @@
 # Node.js packages
 node_modules/
 
+# Serverless
+.serverless/
+
 # MongoDB development database
 data/
 
@@ -55,3 +58,7 @@ target/
 
 # Test Server
 server-test.js
+
+# Environment Files
+.env
+.env.production
