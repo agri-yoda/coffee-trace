@@ -15,12 +15,12 @@ provider:
   timeout: 15
   stage: production
   region: ap-south-1
-  environment:
-    NODE_ENV: ${NODE_ENV}
-    JWT_ACCESS_KEY: ${JWT_ACCESS_KEY}
-    JWT_ACCESS_TIME: ${JWT_ACCESS_TIME}
-    DB_URI: ${DB_URI}
-    S3_BUCKET: ${S3_BUCKET}
+  # environment:
+  #   NODE_ENV: ${NODE_ENV}
+  #   JWT_ACCESS_KEY: ${JWT_ACCESS_KEY}
+  #   JWT_ACCESS_TIME: ${JWT_ACCESS_TIME}
+  #   DB_URI: ${DB_URI}
+  #   S3_BUCKET: ${S3_BUCKET}
 
 functions:
   app:

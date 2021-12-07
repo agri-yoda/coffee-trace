@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "SET NODE_ENV=development & node server.js",
-    "dev": "SET NODE_ENV=development & nodemon server.js",
-    "deploy": "SET NODE_ENV=production & sls deploy"
+    "start": "NODE_ENV=development & node server.js",
+    "dev": "NODE_ENV=development & nodemon server.js",
+    "deploy": "NODE_ENV=production & sls deploy"
   },
   "repository": {
     "type": "git",
