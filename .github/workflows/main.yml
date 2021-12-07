@@ -28,3 +28,9 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Serverless Deploy
         run: npm run-script deploy
+        env:
+          NODE_ENV: ${{ secrets.NODE_ENV }}
+          DB_URI: ${{ secrets.DB_URI }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          JWT_ACCESS_KEY: ${{ secrets.JWT_ACCESS_KEY }}
+          JWT_ACCESS_TIME: ${{ secrets.JWT_ACCESS_TIME }}
