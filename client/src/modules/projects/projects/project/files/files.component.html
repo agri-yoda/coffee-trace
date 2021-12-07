@@ -1,0 +1,31 @@
+<mat-spinner *ngIf="(isLoading$ | async)" color="accent"></mat-spinner>
+
+<div class="container" *ngIf="!(isLoading$ | async)">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="window">
+                <mat-form-field appearance="outline" class="col-md-5">
+                    <mat-label>Project ID</mat-label>
+                    <input matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
+                    <mat-icon matSuffix>fingerprint</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-md-6">
+                    <mat-label>Project Name</mat-label>
+                    <input matInput [(ngModel)]="project.project_name" placeholder="Project Name" readonly>
+                    <mat-icon matSuffix>badge</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="mt-4">
+            <div class="col-md-12 window">
+                <h2>Key Documents</h2>
+            </div>
+            <ng-container>
+                <img class="loading-placeholder" src="assets/svgs/no_files.svg">
+            </ng-container>
+            <button mat-raised-button color="blue-ryb">
+                <mat-icon>cloud_upload</mat-icon> Upload Files
+            </button>
+        </div>
+    </div>
+</div>

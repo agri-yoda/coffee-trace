@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
 
-    // Initiliase the form 
+    // Initialise the form 
     this.form = this._FormBuilder.group({
       email: [null, [Validators.required, Validators.pattern(emailRegex)]],
       first_name: [null, Validators.required],
@@ -72,9 +72,9 @@ export class SignUpComponent implements OnInit {
     }
     if (this.redirectURL) {
       this._Router.navigateByUrl(this.redirectURL)
-        .catch(() => this._Router.navigate(['/dashboard']))
+        .catch(() => this._Router.navigate(['/saas/dashboard']))
     } else {
-      this._Router.navigate(['/dashboard'])
+      this._Router.navigate(['/saas/dashboard'])
     }
   }
 

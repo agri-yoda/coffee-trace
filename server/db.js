@@ -11,6 +11,16 @@ module.exports = {
             // Get Global Promise
             mongoose.Promise = global.Promise
 
+            // Set Options
+            var __setOptions = mongoose.Query.prototype.setOptions;
+
+            // Set the lean true by default
+            mongoose.Query.prototype.setOptions = function(options, overwrite) {
+              __setOptions.apply(this, arguments);
+              if (this.options.lean == null) this.options.lean = true;
+              return this;
+            };
+
             // Init Connections
             mongoose.connection
 

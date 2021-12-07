@@ -6,7 +6,8 @@
     background: black;
     color: white;
     padding: 0 24px;
-    width: 250px !important;
+    overflow: hidden !important;
+    // width: 250px !important;
 }
 
 #sidebar.active {

@@ -3,16 +3,19 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private _Router: Router) { }
 
   /**
    * Custom Interceptor which intercepts request to add authorization header
@@ -22,13 +25,22 @@ export class AuthInterceptor implements HttpInterceptor {
    */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if(this.authService.isLoggedIn()){
+    if (this.authService.isLoggedIn()) {
       const tokenizedRequest = request.clone({
         setHeaders: {
           Authorization: `Bearer ${sessionStorage.getItem('token')}`
         }
       });
-      return next.handle(tokenizedRequest);
+      return next.handle(tokenizedRequest)
+        .pipe(tap(() => { },
+          (err: any) => {
+            if (err instanceof HttpErrorResponse) {
+              if (err.status !== 401) {
+                return;
+              }
+              this._Router.navigate(['/home', 'login'])
+            }
+          }))
     }
     return next.handle(request.clone())
 

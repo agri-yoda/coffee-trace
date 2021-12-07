@@ -1,5 +1,5 @@
 <mat-sidenav-container (backdropClick)="this.sidenav.toggle()" [hasBackdrop]="'false'">
-    <mat-sidenav #sidenav (keydown.escape)="this.sidenav.toggle()" disableClose autosize [mode]="'side'">
+    <mat-sidenav #sidenav (keydown.escape)="this.sidenav.toggle()" [opened]="true" disableClose autosize [mode]="'side'">
 
         <!-- Side Bar Menu starts -->
         <app-side-bar *ngIf="this.user" class="nav navbar-nav navbar-left" [sideNav]="sidenav"></app-side-bar>
@@ -7,7 +7,7 @@
 
     </mat-sidenav>
 
-    <mat-sidenav-content style="height: 100vh;">
+    <mat-sidenav-content style="height: 100vh">
         <mat-toolbar *ngIf="user">
 
             <!-- Side Bar Navigation Toggle Starts -->
@@ -20,7 +20,7 @@
             <!-- <mat-form-field class="example-full-width" appearance="legacy"> -->
                 <mat-icon>search</mat-icon>
                 <input placeholder="Search for data, users ...">
-            <!-- </mat-form-field>             -->
+            <!-- </mat-form-field> -->
             <!-- CT Logo -->
 
 

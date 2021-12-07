@@ -1,0 +1,85 @@
+<mat-spinner *ngIf="(isLoading$ | async)" color="accent"></mat-spinner>
+
+<div class="container" *ngIf="!(isLoading$ | async)">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="window">
+                <mat-form-field appearance="outline" class="col-md-5">
+                    <mat-label>Project ID</mat-label>
+                    <input matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
+                    <mat-icon matSuffix>fingerprint</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-md-6">
+                    <mat-label>Project Name</mat-label>
+                    <input matInput [(ngModel)]="project.project_name" placeholder="Project Name" readonly>
+                    <mat-icon matSuffix>badge</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="window">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Plantation
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Your plantation media!
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <ng-container *ngIf="project.plantation.description_video == 'default_vid'">
+                        <h2 class="loading-placeholder-header">Showcase your plantation here ...</h2>
+                        <img class="loading-placeholder" src="assets/svgs/no_video.svg">
+                    </ng-container>
+                    <ng-container *ngIf="project.plantation.description_video != 'default_vid'">
+                        <iframe [src]="project.plantation.description_video | safe: 'resourceUrl'"></iframe>
+                    </ng-container>
+                </mat-expansion-panel>
+                <!-- <mat-card>
+                    <mat-card-content>
+                    </mat-card-content>
+                </mat-card> -->
+            </div>
+            <div class="mt-4 mb-4">
+                <ng-container *ngIf="project.plantation.csv == 'default_csv'">
+                    <img class="loading-placeholder" src="assets/svgs/no_sheet.svg">
+                </ng-container>
+                <button class="mt-4" mat-raised-button color="blue-ryb">
+                    <mat-icon>cloud_download</mat-icon> Download Template
+                </button>
+                <button class="mt-4" mat-raised-button color="blue-ryb" (click)="fileImportInput.click()">
+                    <mat-icon>cloud_upload</mat-icon> Upload CSV
+                </button>
+                <input hidden type="file" #fileImportInput name="File Upload" id="csvFileUpload"
+                    (change)="fileChangeListener($event)" accept=".csv" />
+                <app-view-table *ngIf="(isFilePresent$ | async)" [data]="data" [columns]="columns"></app-view-table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea rows="15" matInput placeholder="Feel free to describe briefly about your listing ..."
+                    [(ngModel)]="project.plantation.description" readonly></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="mt-2 full-width">
+                <mat-label>Plantation Area (in acres)</mat-label>
+                <input matInput [(ngModel)]="project.plantation.area" placeholder="in acres" type="number" readonly>
+            </mat-form-field>
+            <div class="same-line full-width">
+                <mat-form-field appearance="outline">
+                    <mat-label>Altitude (in mtrs)</mat-label>
+                    <input matInput [(ngModel)]="project.plantation.altitude" placeholder="in mtrs" type="number"
+                        readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Rainfall (in cms)</mat-label>
+                    <input matInput [(ngModel)]="project.plantation.rainfall" placeholder="in cms" type="number"
+                        readonly>
+                </mat-form-field>
+            </div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>About Region & Bio Diversity</mat-label>
+                <textarea rows="10" matInput placeholder="Mention about the region and bio diversity"
+                    [(ngModel)]="project.plantation.region_and_bio" readonly></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+</div>

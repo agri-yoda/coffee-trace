@@ -1,0 +1,52 @@
+<mat-toolbar *ngIf="projectId" class="mb-4 mt-4">
+
+    <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'plantation'" (click)="selectedRoute = 'plantation'" 
+    [routerLink]="['/saas', 'projects', this.projectId, 'plantation']">
+        <mat-icon>grass</mat-icon> Plantation
+    </button>
+    <button mat-raised-button color="accent" *ngIf="selectedRoute == 'plantation'">
+        <mat-icon>grass</mat-icon> Plantation
+    </button>
+
+    <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'coffee'" (click)="selectedRoute = 'coffee'"
+    [routerLink]="['/saas', 'projects', this.projectId, 'coffee']">
+        <mat-icon>local_cafe</mat-icon> Coffee
+    </button>
+    <button mat-raised-button color="accent" *ngIf="selectedRoute == 'coffee'">
+        <mat-icon>local_cafe</mat-icon> Coffee
+    </button>
+
+    <button mat-stroked-button color="accent" color="accent" *ngIf="selectedRoute != 'dashboard'" (click)="selectedRoute = 'dashboard'"
+    [routerLink]="['/saas', 'projects', this.projectId, 'dashboard']">
+        <mat-icon>dashboard</mat-icon> Dashboard
+    </button>
+    <button mat-raised-button color="accent" color="accent" *ngIf="selectedRoute == 'dashboard'">
+        <mat-icon>dashboard</mat-icon> Dashboard
+    </button>
+
+    <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'files'" (click)="selectedRoute = 'files'"
+    [routerLink]="['/saas', 'projects', this.projectId, 'files']">
+        <mat-icon>file_download</mat-icon> Files & Updates
+    </button>
+    <button mat-raised-button color="accent" *ngIf="selectedRoute == 'files'">
+        <mat-icon>file_download</mat-icon> Files & Updates
+    </button>
+
+    <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'people'" (click)="selectedRoute = 'people'"
+    [routerLink]="['/saas', 'projects', this.projectId, 'people']">
+        <mat-icon>person_add</mat-icon> People
+    </button>
+    <button mat-raised-button color="accent" *ngIf="selectedRoute == 'people'">
+        <mat-icon>person_add</mat-icon> People
+    </button>
+
+    <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'settings'" (click)="selectedRoute = 'settings'"
+    [routerLink]="['/saas', 'projects', this.projectId, 'settings']">
+        <mat-icon>settings</mat-icon> Settings
+    </button>
+    <button mat-raised-button color="accent" *ngIf="selectedRoute == 'settings'">
+        <mat-icon>settings</mat-icon> Settings
+    </button>
+
+</mat-toolbar>
+<router-outlet></router-outlet>

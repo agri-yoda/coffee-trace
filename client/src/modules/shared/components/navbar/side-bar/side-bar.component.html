@@ -6,7 +6,9 @@
             (click)="this.sideNav.toggle()">
         </a>
         <div id="dismiss">
-            <i class="material-icons" (click)="this.sideNav.toggle()">close</i>
+            <mat-icon (click)="isExpanded = !isExpanded;" *ngIf="!isExpanded" matTooltip="Expand Menu">logout</mat-icon>
+            <mat-icon (click)="isExpanded = !isExpanded;" *ngIf="isExpanded" matTooltip="Collapse Menu">cancel</mat-icon>
+            <!-- <i class="material-icons" (click)="isExpanded = !isExpanded;">close</i> -->
         </div>
     </div>
     <!-- Sidebar Header ends -->
@@ -14,30 +16,96 @@
     <div class="menu-options">
         <ul class="list-unstyled components">
             <li>
-                <a class="nav-link" [routerLink]="['/dashboard', 'home']" routerLinkActive="router-link-active">
+                <a *ngIf="isExpanded" class="nav-link" [routerLink]="['/saas', 'dashboard']"
+                    routerLinkActive="router-link-active">
                     <mat-icon>dashboard</mat-icon>
                     Dashboard
+                </a>
+                <a [routerLink]="['/saas', 'dashboard']" routerLinkActive="router-link-active" class="nav-link active"
+                    *ngIf="!isExpanded" matTooltip="Dashboard" matTooltipPosition="right">
+                    <mat-icon>dashboard</mat-icon>
+                </a>
+            </li>
+            <li>
+                <a *ngIf="isExpanded" class="nav-link" [routerLink]="['/saas', 'projects', 'all']"
+                    routerLinkActive="router-link-active">
+                    <mat-icon>apps</mat-icon>
+                    Projects
+                </a>
+                <a [routerLink]="['/saas', 'projects', 'all']" routerLinkActive="router-link-active" class="nav-link active"
+                    *ngIf="!isExpanded" matTooltip="Projects" matTooltipPosition="right">
+                    <mat-icon>apps</mat-icon>
+                </a>
+            </li>
+            <li>
+                <a *ngIf="isExpanded" class="nav-link" [routerLink]="['/saas', 'projects', 'all']"
+                    routerLinkActive="router-link-active">
+                    <mat-icon>coffee</mat-icon>
+                    Coffee
+                </a>
+                <a [routerLink]="['/saas', 'dashboard']" routerLinkActive="router-link-active" class="nav-link active"
+                    *ngIf="!isExpanded" matTooltip="Coffee" matTooltipPosition="right">
+                    <mat-icon>coffee</mat-icon>
+                </a>
+            </li>
+            <li>
+                <a *ngIf="isExpanded" class="nav-link" [routerLink]="['/saas', 'projects', 'all']"
+                    routerLinkActive="router-link-active">
+                    <mat-icon>campaign</mat-icon>
+                    Campaign
+                </a>
+                <a [routerLink]="['/saas', 'dashboard']" routerLinkActive="router-link-active" class="nav-link active"
+                    *ngIf="!isExpanded" matTooltip="Campaign" matTooltipPosition="right">
+                    <mat-icon>campaign</mat-icon>
+                </a>
+            </li>
+            <li>
+                <a *ngIf="isExpanded" class="nav-link" [routerLink]="['/saas', 'projects', 'all']"
+                    routerLinkActive="router-link-active">
+                    <mat-icon>work</mat-icon>
+                    Tools
+                </a>
+                <a [routerLink]="['/saas', 'dashboard']" routerLinkActive="router-link-active" class="nav-link active"
+                    *ngIf="!isExpanded" matTooltip="Tools" matTooltipPosition="right">
+                    <mat-icon>work</mat-icon>
+                </a>
+            </li>
+            <li>
+                <a *ngIf="isExpanded" class="nav-link" [routerLink]="['/saas', 'projects', 'all']"
+                    routerLinkActive="router-link-active">
+                    <mat-icon>agriculture</mat-icon>
+                    Farm Resources
+                </a>
+                <a [routerLink]="['/saas', 'dashboard']" routerLinkActive="router-link-active" class="nav-link active"
+                    *ngIf="!isExpanded" matTooltip="Farm Resources" matTooltipPosition="right">
+                    <mat-icon>agriculture</mat-icon>
                 </a>
             </li>
         </ul>
         <hr>
-            <ul class="list-unstyled">
-                <li>
-                    <!-- USER PROFILE BADGE STARTS -->
-                    <a class="nav-link">
-                        <mat-icon>account_circle</mat-icon>
-                        My Account
-                    </a>
-                    <!-- USER PROFILE BADGE ENDS -->
-                </li>
-            </ul>
+        <ul class="list-unstyled">
+            <li>
+                <!-- USER PROFILE BADGE STARTS -->
+                <a *ngIf="isExpanded" class="nav-link">
+                    <mat-icon>account_circle</mat-icon>
+                    My Account
+                </a>
+                <a class="nav-link active" *ngIf="!isExpanded" matTooltip="My Account" matTooltipPosition="right">
+                    <mat-icon>account_circle</mat-icon>
+                </a>
+                <!-- USER PROFILE BADGE ENDS -->
+            </li>
+        </ul>
         <hr>
         <ul class="list-unstyled">
             <li>
                 <!-- USER PROFILE BADGE STARTS -->
-                <a class="nav-link">
+                <a *ngIf="isExpanded" class="nav-link">
                     <mat-icon>settings</mat-icon>
                     Settings
+                </a>
+                <a class="nav-link active" *ngIf="!isExpanded" matTooltip="Settings" matTooltipPosition="right">
+                    <mat-icon>settings</mat-icon>
                 </a>
                 <!-- USER PROFILE BADGE ENDS -->
             </li>

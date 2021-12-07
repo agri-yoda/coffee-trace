@@ -1,0 +1,24 @@
+.full-width {
+    width: 100% !important;
+}
+
+.window {
+    // margin-left: 5% !important;
+    display: flex;
+    justify-content: space-around;
+}
+
+mat-card, mat-expansion-panel {
+    // margin-left: 5% !important;
+    width: 100% !important;
+    // min-height: 250px;
+}
+
+iframe {
+    display: block;
+    width: 100%;
+}
+
+button {
+    margin-right: 5% !important;
+}
