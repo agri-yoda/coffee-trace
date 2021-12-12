@@ -1,8 +1,7 @@
 service: coffee-trace-server
 
 custom:
-  defaultStage: dev
-  environment: ${file(env.yml):${self:provider.stage}, file(env.yml):default}
+  environment: ${file(env.yml)}
 
 provider:
   name: aws
