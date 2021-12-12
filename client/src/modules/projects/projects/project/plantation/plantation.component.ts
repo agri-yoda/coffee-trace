@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 import { UtilityService } from 'src/modules/shared/services/utility.service';
 import { NgxCsvParser } from 'ngx-csv-parser';
 import { NgxCSVParserError } from 'ngx-csv-parser';
+import { FilesService } from 'src/modules/shared/services/files.service';
+import { ProjectsService } from 'src/modules/shared/services/projects.service';
 
 @Component({
   selector: 'app-plantation',
@@ -36,7 +38,7 @@ export class PlantationComponent implements OnInit {
   // Is File Present
   isFilePresent$ = new BehaviorSubject(false);
 
-  data: any  = []
+  data: any = []
   columns: any = []
   header = false
 
@@ -59,21 +61,82 @@ export class PlantationComponent implements OnInit {
   }
 
   // Your applications input change listener for the CSV File
-  fileChangeListener($event: any): void {
+  async fileChangeListener($event: any) {
 
     // Select the files from the event
-    const files = $event.srcElement.files;
+    const files = $event.srcElement.files
 
-    // Parse the file you want to select for the operation along with the configuration
-    this.ngxCsvParser.parse(files[0], { header: this.header, delimiter: ',' })
-      .pipe().subscribe((result: any) => {
-        this.columns = result[0]
-        this.data = result.slice(1)
-        this.isFilePresent$.next(true)
-      }, (error: NgxCSVParserError) => {
-        console.log('Error', error)
+    // Upload the file to the bucket
+    let fileUploaded = await this.uploadFile(files[0])
+
+    if (fileUploaded == true) {
+
+      // Update the project
+      let project = await this.updatePlantationCSV(`${JSON.parse(sessionStorage.getItem('user') + "")['_id']}/${files[0].name}`)
+
+      // Send the update 
+      this.utilityService.updateProject(project)
+
+      // Parse the file you want to select for the operation along with the configuration
+      this.ngxCsvParser.parse(files[0], { header: this.header, delimiter: ',' })
+        .pipe().subscribe((result: any) => {
+          this.columns = result[0]
+          this.data = result.slice(1)
+          this.isFilePresent$.next(true)
+        }, (error: NgxCSVParserError) => {
+          console.log('Error', error)
+        })
+    } else {
+      console.log('Unable to upload the file!')
+    }
+
+  }
+
+  /**
+   * This function fetches the signed URL from S3 Bucket
+   * @param file 
+   * @returns 
+   */
+  getSignedUrl(file: File) {
+    return new Promise((resolve, reject) => {
+      let filesService = this._Injector.get(FilesService)
+      filesService.getUploadURL(file.name)
+        .then((res: any) => resolve(res['url']))
+        .catch(() => reject(null))
+    })
+  }
+
+  /**
+   * This function uploads the file to the bucket
+   * @param file 
+   * @returns 
+   */
+  uploadFile(file: any) {
+    return new Promise(async (resolve, reject) => {
+      let filesService = this._Injector.get(FilesService)
+      let url = await this.getSignedUrl(file)
+      filesService.uploadUsingSignedURL(url, file)
+        .then(() => resolve(true))
+        .catch(() => reject(false))
+    })
+  }
+
+  updatePlantationCSV(csv: any){
+    return new Promise((resolve, reject)=>{
+      let projectData = {
+        plantation: {
+          csv: csv
+        }
+      }
+      let projectService = this._Injector.get(ProjectsService)
+      projectService.updateProject(this.project._id, projectData)
+      .then((res: any)=>{
+        resolve(res['project'])
       })
-
+      .catch(()=>{
+        reject(this.project)
+      })
+    })
   }
 
 

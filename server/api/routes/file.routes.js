@@ -25,7 +25,7 @@ router.route('/')
 router.route('/signed-url')
 
         // To Upload
-        .get(FileControllers.getSignedUploadUrl)
+        .post(FileControllers.getSignedUploadUrl)
 
 // Export Router
 module.exports = router

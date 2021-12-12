@@ -30,7 +30,7 @@ const S3 = {
         })
     },
 
-    async uploadFile(fileName) {
+    async uploadFile(fileName, userId) {
 
         return new Promise((resolve, reject) => {
 
@@ -40,7 +40,7 @@ const S3 = {
             // Setting up S3 upload parameters
             const params = {
                 Bucket: process.env.S3_BUCKET,
-                Key: fileName, // File name you want to save as in S3
+                Key: `${userId}/${fileName}`, // File name you want to save as in S3
                 Body: fileContent
             }
 
@@ -56,13 +56,13 @@ const S3 = {
         })
     },
 
-    async getUploadUrl(fileName) {
+    async getUploadUrl(fileName, userId) {
         return new Promise((resolve, reject) => {
 
             // Setting up S3 upload parameters
             const params = {
                 Bucket: process.env.S3_BUCKET,
-                Key: fileName, // File name you want to save as in S3
+                Key: `${userId}/${fileName}`, // File name you want to save as in S3
                 Expires: 60 * 5
             }
 
