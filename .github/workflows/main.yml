@@ -36,6 +36,8 @@ jobs:
           JWT_ACCESS_TIME: ${{ secrets.JWT_ACCESS_TIME }}
           DB_URI: ${{ secrets.DB_URI }}
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          SUBNET_ID: ${{ secrets.SUBNET_ID }}
+          SECURITY_GROUP_ID: ${{ secrets.SECURITY_GROUP_ID }}
           EOF
       - name: Serverless Deploy
         run: npm run-script deploy
