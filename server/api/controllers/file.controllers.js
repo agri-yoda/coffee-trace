@@ -31,7 +31,7 @@ const FileControllers = {
             // FileName from body
             const { file_name } = req.body
 
-            S3.getUploadUrl(file_name)
+            S3.getUploadUrl(file_name, req.user._id)
                 .then((url) => {
 
                     // Send Status 200 response

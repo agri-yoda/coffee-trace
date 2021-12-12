@@ -44,8 +44,8 @@ export class PeopleComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(InvitePeopleModalComponent, {
-      height: '90%',
-      width: '90%',
+      maxHeight: '90%',
+      maxWidth: '90%',
       autoFocus: true,
       hasBackdrop: true,
       disableClose: false,

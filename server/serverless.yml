@@ -1,11 +1,8 @@
 service: coffee-trace-server
 
-# plugins:
-#   - serverless-dotenv-plugin
-
-# custom:
-#   dotenv:
-#     path: .env.production
+custom:
+  defaultStage: dev
+  environment: ${file(env.yml):${self:provider.stage}, file(env.yml):default}
 
 provider:
   name: aws
@@ -13,14 +10,14 @@ provider:
   lambdaHashingVersion: 20201221
   memorySize: 2048
   timeout: 15
-  stage: production
+  stage: ${self:custom.environment.NODE_ENV}
   region: ap-south-1
-  # environment:
-  #   NODE_ENV: ${NODE_ENV}
-  #   JWT_ACCESS_KEY: ${JWT_ACCESS_KEY}
-  #   JWT_ACCESS_TIME: ${JWT_ACCESS_TIME}
-  #   DB_URI: ${DB_URI}
-  #   S3_BUCKET: ${S3_BUCKET}
+  environment:
+    NODE_ENV: ${self:custom.environment.NODE_ENV}
+    JWT_ACCESS_KEY: ${self:custom.environment.JWT_ACCESS_KEY}
+    JWT_ACCESS_TIME: ${self:custom.environment.JWT_ACCESS_TIME}
+    DB_URI: ${self:custom.environment.DB_URI}
+    S3_BUCKET: ${self:custom.environment.S3_BUCKET}
 
 functions:
   app:
