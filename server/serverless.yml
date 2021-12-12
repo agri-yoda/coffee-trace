@@ -21,6 +21,11 @@ provider:
 functions:
   app:
     handler: lambda.universal
+    vpc: 
+      securityGroupIds:
+        - ${self:custom.environment.SECURITY_GROUP_ID}
+      subnetIds:
+        - ${self:custom.environment.SUBNET_ID}
     events:
       - http:
           path: /
