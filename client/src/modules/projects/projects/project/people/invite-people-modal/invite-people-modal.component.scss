@@ -1,3 +1,9 @@
 .copy-link {
     cursor: pointer;
 }
+::ng-deep {
+    .mat-dialog-container {
+    padding-left: 50px;
+    padding-right: 50px;
+    }
+}

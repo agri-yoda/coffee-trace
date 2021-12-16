@@ -3,3 +3,12 @@
 button {
     margin-right: 5% !important;
 }
+::ng-deep{
+    table.mat-table {
+        border-spacing: 0;
+        width: 100%;
+    }
+    mat-elevation-z8 {
+        box-shadow: none;
+    }
+}
