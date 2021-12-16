@@ -1,6 +1,8 @@
 name: deploy-aws
 on:
   push:
+    tags: 
+      - 'v**'
     branches:
       - master
 jobs:
@@ -26,11 +28,16 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Serverless Deploy
-        run: npm run-script deploy
-        env:
-          NODE_ENV: ${{ secrets.NODE_ENV }}
-          DB_URI: ${{ secrets.DB_URI }}
-          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+      - name: Create env file
+        run: | 
+          cat > env.yml << EOF
+          NODE_ENV: ${{ secrets.NODE_ENV }} 
           JWT_ACCESS_KEY: ${{ secrets.JWT_ACCESS_KEY }}
           JWT_ACCESS_TIME: ${{ secrets.JWT_ACCESS_TIME }}
+          DB_URI: ${{ secrets.DB_URI }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          SUBNET_ID: ${{ secrets.SUBNET_ID }}
+          SECURITY_GROUP_ID: ${{ secrets.SECURITY_GROUP_ID }}
+          EOF
+      - name: Serverless Deploy
+        run: npm run-script deploy

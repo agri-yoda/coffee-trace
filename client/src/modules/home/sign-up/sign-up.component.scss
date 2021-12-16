@@ -37,21 +37,21 @@
 }
 
 .submit-btn {
-    background: $ct-blue !important;
+    // background: $ct-blue !important;
     width: 100%;
     // margin: 1% !important;
 }
 
 .social-btn {
-    outline-color: $ct-blue !important;
-    border: $ct-blue solid 1px !important;
+    // outline-color: $ct-blue !important;
+    border: $ct-green solid 1px !important;
     width: 48% !important;
     // margin: 1% !important;
 } 
 
 .social-btn:hover{
     color: white !important;
-    background: $ct-blue !important;
+    background: $ct-green !important;
     border: white solid 1px !important;
 }
 
