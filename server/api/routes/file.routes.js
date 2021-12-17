@@ -22,6 +22,11 @@ router.route('/')
         // Upload file
         .post(FileControllers.uploadFile)
 
+router.route('/file-url')
+
+        // Get File
+        .post(FileControllers.getSignedFileUrl)
+
 router.route('/signed-url')
 
         // To Upload

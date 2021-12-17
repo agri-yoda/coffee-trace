@@ -17,6 +17,7 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from "ngx-ui-loader";
 // Location Strategy
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { MaterialModule } from 'src/modules/material/material.module';
+import { MatSortModule } from "@angular/material/sort";
 
 // Configs
 import config from 'src/configs/ngx-ui-config';
@@ -37,6 +38,7 @@ import { AuthInterceptor } from 'src/modules/shared/interceptors/auth.intercepto
 
     // App Routing Module
     AppRoutingModule,
+    MatSortModule,
 
     // Browser Animations Module
     BrowserAnimationsModule,

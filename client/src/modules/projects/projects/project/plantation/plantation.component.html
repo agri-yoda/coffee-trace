@@ -1,17 +1,126 @@
 <mat-spinner *ngIf="(isLoading$ | async)" color="accent"></mat-spinner>
 
-<div class="container" *ngIf="!(isLoading$ | async)">
+<div class="main-container" *ngIf="!(isLoading$ | async)">
+
+    <div class="row mb-4">
+        <!-- Card 1 -->
+        <div class="col-3">
+            <div class="widget purple-bg">
+                <div class="row card-top-row">
+                    <div class="col-12">
+                        <h2>
+                            1,800 ha
+                        </h2>
+                    </div>
+                    <div class="col-12">
+                        <h4 class="card-subtext">
+                            Average
+                        </h4>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6 text-right center-it">
+                        <h1>ALTITUTE</h1>
+                    </div>
+                    <div class="col-6 text-right center-it">
+                        <h1>180 MTRS</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-3">
+            <div class="widget blue-bg">
+                <div class="row card-top-row">
+                    <div class="col-12">
+                        <h2>
+                            340.4 mts
+                        </h2>
+                    </div>
+                    <div class="col-12">
+                        <h4 class="card-subtext">
+                            Coffee Harvest
+                        </h4>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6 text-right center-it">
+                        <h1>TYPICA</h1>
+                    </div>
+                    <div class="col-6 text-right center-it">
+                        <h1>150 MTRS</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-3">
+            <div class="widget pink-bg">
+                <div class="row card-top-row">
+                    <div class="col-12">
+                        <h2>
+                            994
+                        </h2>
+                    </div>
+                    <div class="col-12">
+                        <h4 class="card-subtext">
+                            Growers
+                        </h4>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6 text-right center-it">
+                        <h1>MEN OVER 40</h1>
+                    </div>
+                    <div class="col-6 text-right center-it">
+                        <h1>25%</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-3">
+            <div class="widget orange-bg">
+                <div class="row card-top-row">
+                    <div class="col-12">
+                        <h2>
+                            Dec-Mar
+                        </h2>
+                    </div>
+                    <div class="col-12">
+                        <h4 class="card-subtext">
+                            Harvest Period
+                        </h4>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6 text-right center-it">
+                        <h1>FLY HARVEST</h1>
+                    </div>
+                    <div class="col-6 text-right center-it">
+                        <h1>AUG</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-8">
             <div class="window">
                 <mat-form-field appearance="outline" class="col-md-5">
                     <mat-label>Project ID</mat-label>
-                    <input matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
+                    <input autocomplete="off" matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
                     <mat-icon matSuffix>fingerprint</mat-icon>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="col-md-6">
                     <mat-label>Project Name</mat-label>
-                    <input matInput [(ngModel)]="project.project_name" placeholder="Project Name" readonly>
+                    <input autocomplete="off" matInput [(ngModel)]="project.project_name" placeholder="Project Name"
+                        readonly>
                     <mat-icon matSuffix>badge</mat-icon>
                 </mat-form-field>
             </div>
@@ -30,13 +139,9 @@
                         <img class="loading-placeholder" src="assets/svgs/no_video.svg">
                     </ng-container>
                     <ng-container *ngIf="project.plantation.description_video != 'default_vid'">
-                        <iframe [src]="project.plantation.description_video | safe: 'resourceUrl'"></iframe>
+                        <iframe width="699" height="393" [src]="project.plantation.description_video | safe: 'resourceUrl'"></iframe>
                     </ng-container>
                 </mat-expansion-panel>
-                <!-- <mat-card>
-                    <mat-card-content>
-                    </mat-card-content>
-                </mat-card> -->
             </div>
             <div class="mt-4 mb-4">
                 <ng-container *ngIf="project.plantation.csv == 'default_csv'">
@@ -48,9 +153,51 @@
                 <button class="mt-4" mat-raised-button color="blue-ryb" (click)="fileImportInput.click()">
                     <mat-icon>cloud_upload</mat-icon> Upload CSV
                 </button>
-                <input hidden type="file" #fileImportInput name="File Upload" id="csvFileUpload"
+                <input autocomplete="off" hidden type="file" #fileImportInput name="File Upload" id="csvFileUpload"
                     (change)="fileChangeListener($event)" accept=".csv" />
-                <app-view-table *ngIf="(isFilePresent$ | async)" [data]="data" [columns]="columns"></app-view-table>
+                <app-view-table *ngIf="(isFilePresent$ | async)" [fileName]="this.project.plantation.csv" [data]="data" [columns]="columns"></app-view-table>
+            </div>
+            <div class="row">
+                <div class="col-12 map-col">
+                    <div class="row">
+                        <div class="container">
+                            <div class="map-container">
+                                <img src="http://res.cloudinary.com/slzr/image/upload/v1500321012/world-map-1500_vvekl5.png"
+                                    style="width: 100%;">
+                                <div class="point venezuela tippy" title="Venezuela"></div>
+                                <div class="point brasil tippy" title="Brasil"></div>
+                                <div class="point argentina tippy" title="Argentina"></div>
+                                <div class="point colombia tippy" title="Colombia"></div>
+                                <div class="point panama tippy" title="Panamá"></div>
+                                <div class="point mexico tippy" title="Mexico"></div>
+                                <div class="point usa tippy" title="Estados Unidos"></div>
+                                <div class="point arabia tippy" title="Arabia Saudi"></div>
+                                <div class="point turquia tippy" title="Turquía"></div>
+                                <div class="point rusia tippy" title="Rusia"></div>
+                                <div class="point china tippy" title="China"></div>
+                                <div class="point japon tippy" title="Japon"></div>
+                                <div class="point australia tippy" title="Australia"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <h2 class="map-section-heading">Plantation Overview</h2>
+                            <h3 class="map-section-data">
+                                100% shade grown with ideal weather conditions and elevation. Arabica plantation over 50
+                                years,
+                                combined with Vanilla & Pepper.
+                            </h3>
+                        </div>
+                        <div class="col-6">
+                            <h2 class="map-section-heading">Region Detail</h2>
+                            <h3 class="map-section-data">
+                                Area is a rich natural rainforest consisting of mango, tamarind, jackfruit..
+                            </h3>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -61,18 +208,19 @@
             </mat-form-field>
             <mat-form-field appearance="outline" class="mt-2 full-width">
                 <mat-label>Plantation Area (in acres)</mat-label>
-                <input matInput [(ngModel)]="project.plantation.area" placeholder="in acres" type="number" readonly>
+                <input autocomplete="off" matInput [(ngModel)]="project.plantation.area" placeholder="in acres"
+                    type="number" readonly>
             </mat-form-field>
             <div class="same-line full-width">
                 <mat-form-field appearance="outline">
                     <mat-label>Altitude (in mtrs)</mat-label>
-                    <input matInput [(ngModel)]="project.plantation.altitude" placeholder="in mtrs" type="number"
-                        readonly>
+                    <input autocomplete="off" matInput [(ngModel)]="project.plantation.altitude" placeholder="in mtrs"
+                        type="number" readonly>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Rainfall (in cms)</mat-label>
-                    <input matInput [(ngModel)]="project.plantation.rainfall" placeholder="in cms" type="number"
-                        readonly>
+                    <input autocomplete="off" matInput [(ngModel)]="project.plantation.rainfall" placeholder="in cms"
+                        type="number" readonly>
                 </mat-form-field>
             </div>
             <mat-form-field class="full-width" appearance="outline">
@@ -82,4 +230,6 @@
             </mat-form-field>
         </div>
     </div>
+
+
 </div>

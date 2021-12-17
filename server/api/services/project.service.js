@@ -176,7 +176,9 @@ const ProjectService = {
                 }, {
                     $set: projectData
                 }, {
-                    new: true
+                    upsert: true,
+                    new: true,
+                    returnNewDocument: true
                 })
 
                 // Resolve the promise

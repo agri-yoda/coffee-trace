@@ -22,3 +22,110 @@ iframe {
 button {
     margin-right: 5% !important;
 }
+
+.widget {
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 20vw;
+    height: 200px;
+}
+
+.widget h2, .widget h3 {
+    font-size: 50px;
+    margin-top: 15px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.purple-bg, .bg-primary {
+    background: linear-gradient(0deg, #3023AE 0%, #7042BF 96.59%);
+    color: #ffffff;
+}
+.blue-bg, .bg-primary {
+    background: linear-gradient(180deg, #17CEC4 2.55%, #08AEEA 100%);
+    color: #ffffff;
+}
+.pink-bg, .bg-primary {
+    background: linear-gradient(180deg, #ED629A 0%, #C850C0 100%);
+    color: #ffffff;
+}
+.orange-bg, .bg-primary {
+    background: linear-gradient(180deg, #FF8308 0%, #FD4F00 100%);
+    color: #ffffff;
+}
+.center-it{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-subtext{
+    margin-bottom: 0px;
+}
+
+h1{
+    font: 400 18px / 32px Roboto, "Helvetica Neue", sans-serif;
+}
+.map-col{
+    border: 1px solid #B7D2E5;
+}
+
+
+// PLANTATION CSS
+$primary: #00acc1;
+
+.map-container {
+  padding: 3.2rem .8rem;
+  position: relative;
+  display: inline-block;
+  img {
+    width: 100%;
+  }
+  .point {
+    cursor: pointer;
+    position: absolute;
+    width: 1.6rem;
+    height: 1.6rem;
+    background-color:  $primary;
+    border-radius: 50%;
+    transition: all .3s ease;
+    will-change: transform, box-shadow;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 rgba($primary, 0.4);
+    animation: pulse 3s infinite;
+    &:hover {
+      animation: none;
+      transform:  translate(-50%, -50%) scale3D(1.35, 1.35 ,1);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+  }
+  .venezuela { top: 54%; left: 24%; }
+  .brasil { top: 64%; left: 28%; }
+  .argentina { top: 77%; left: 27%; }
+  .colombia { top: 55%; left: 21%; }
+  .panama { top: 51%; left: 18%; }
+  .mexico { top: 38%; left: 12%; }
+  .usa { top: 26%; left: 17%; }
+  .arabia { top: 40%; left: 53%; }
+  .turquia { top: 31%; left: 57%; }
+  .rusia { top: 16%; left: 67%; }
+  .china { top: 40%; left: 72%; }
+  .japon { top: 34%; left: 86%; }
+  .australia { top: 72%; left: 86%; }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba($primary, 0.5); }
+  70% { box-shadow: 0 0 0 25px rgba($primary, 0); }
+  100% { box-shadow: 0 0 0 0 rgba($primary, 0); }
+}
+
+.map-section-heading{
+  color: #3F536E;
+}
+.map-section-data{
+    color: #8DABC4;
+}
+.card-top-row{
+    margin-bottom: 35px;
+}

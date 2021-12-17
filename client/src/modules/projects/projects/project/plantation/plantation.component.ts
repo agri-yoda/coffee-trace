@@ -52,6 +52,11 @@ export class PlantationComponent implements OnInit {
     // Fetch the Project
     this.project = await this.utilityService.getProject()
 
+    // Check if csv exist or not
+    if(this.project.plantation.csv != 'default_csv'){
+      this.isFilePresent$.next(true)
+    }
+
     // Stop the Loader
     this.isLoading$.next(false)
   }
@@ -121,21 +126,42 @@ export class PlantationComponent implements OnInit {
     })
   }
 
-  updatePlantationCSV(csv: any){
-    return new Promise((resolve, reject)=>{
-      let projectData = {
-        plantation: {
-          csv: csv
-        }
+  async updatePlantationCSV(csv: any) {
+    let projectData = {
+      plantation: {
+        description: this.project.plantation.description,
+        area: this.project.plantation.area,
+        altitude: this.project.plantation.altitude,
+        rainfall: this.project.plantation.rainfall,
+        description_video: this.project.plantation.description_video,
+        region_and_bio: this.project.plantation.region_and_bio,
+        csv: csv
       }
+    }
+
+    // Update the Project
+    this.project = await this.callUpdateServiceFunction(projectData)
+
+    // Update the Project Using Service Function
+    this.utilityService.updateProject(this.project)
+  }
+
+  /**
+   * Service Function to update the project
+   * @param projectData 
+   * @returns 
+   */
+  callUpdateServiceFunction(projectData: any) {
+    return new Promise((resolve) => {
       let projectService = this._Injector.get(ProjectsService)
-      projectService.updateProject(this.project._id, projectData)
-      .then((res: any)=>{
-        resolve(res['project'])
-      })
-      .catch(()=>{
-        reject(this.project)
-      })
+      projectService
+        .updateProject(this.project._id, projectData)
+        .then((res: any) => {
+          resolve(res['project'])
+        })
+        .catch(() => {
+          resolve(this.project)
+        })
     })
   }
 

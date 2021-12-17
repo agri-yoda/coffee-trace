@@ -1,9 +1,53 @@
 mat-toolbar {
     display: flex;
     justify-content: space-between;
-    width: 75% !important;
-    border-radius: 10px;
-    margin: auto;
-    background-color: #fff;
-    border: 2px solid #EBEBEB
+    // width: 40% !important;
+    background-color: none;
+    background: none;
+}
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+    background: none !important;
+    color: #1665D8;
+    border: none;
+    box-shadow: none !important;
+}
+.mat-stroked-button:not(.mat-button-disabled) {
+    border: 0px;
+    color: #6B6C6F;
+}
+.col-add-people{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 26px;
+}
+.col-right{
+    display: flex;
+    justify-content: flex-end;
+}
+.row-top{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.top-detail{
+    font-weight: bolder;
+    font-size: 25px;
+}
+h1{
+    margin-bottom: 0px;
+}
+.center-it{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (min-width: 1400px){
+.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 90vw !important;
+}
+}
+
+.form-field{
+    display: block;
+    width: 100%;
 }

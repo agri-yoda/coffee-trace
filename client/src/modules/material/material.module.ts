@@ -100,7 +100,7 @@ import { MatNativeDateModule } from '@angular/material/core'
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule, 
+    MatTableModule,
     A11yModule,
     ClipboardModule,
     DragDropModule,
