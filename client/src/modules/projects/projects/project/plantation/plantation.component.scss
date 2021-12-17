@@ -28,6 +28,8 @@ button {
     padding: 15px 20px;
     margin-bottom: 10px;
     margin-top: 10px;
+    width: 20vw;
+    height: 200px;
 }
 
 .widget h2, .widget h3 {
@@ -123,4 +125,7 @@ $primary: #00acc1;
 }
 .map-section-data{
     color: #8DABC4;
+}
+.card-top-row{
+    margin-bottom: 35px;
 }
