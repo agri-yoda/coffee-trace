@@ -15,9 +15,11 @@ import { DashboardComponent } from './projects/project/dashboard/dashboard.compo
 import { FilesComponent } from './projects/project/files/files.component';
 import { PeopleComponent } from './projects/project/people/people.component';
 import { SettingsComponent } from './projects/project/settings/settings.component';
+import { MatSortModule } from "@angular/material/sort";
 
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { InvitePeopleModalComponent } from './projects/project/people/invite-people-modal/invite-people-modal.component';
+import { TableSortingExampleComponent } from './projects/project/table-sorting-example/table-sorting-example.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +35,15 @@ import { InvitePeopleModalComponent } from './projects/project/people/invite-peo
     FilesComponent,
     PeopleComponent,
     SettingsComponent,
-    InvitePeopleModalComponent
+    InvitePeopleModalComponent,
+    TableSortingExampleComponent
   ],
   imports: [
     CommonModule,
     ProjectsRoutingModule,
     SharedModule,
-    NgxCsvParserModule
+    NgxCsvParserModule,
+    MatSortModule
   ]
 })
 export class ProjectsModule { }

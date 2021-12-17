@@ -9,6 +9,7 @@ import { PlantationComponent } from './projects/project/plantation/plantation.co
 import { ProjectComponent } from './projects/project/project.component';
 import { SettingsComponent } from './projects/project/settings/settings.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { TableSortingExampleComponent } from './projects/project/table-sorting-example/table-sorting-example.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
           { path: 'dashboard', component: DashboardComponent },
           { path: 'files', component: FilesComponent },
           { path: 'people', component: PeopleComponent },
-          { path: 'settings', component: SettingsComponent }
+          { path: 'settings', component: SettingsComponent },
+          { path: 'tablesort', component: TableSortingExampleComponent }
         ]
       }
     ]
