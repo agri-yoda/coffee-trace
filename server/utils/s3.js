@@ -71,6 +71,23 @@ const S3 = {
                 .catch(() => reject())
 
         })
+    },
+
+    async getFileUrl(fileName) {
+        return new Promise((resolve, reject) => {
+
+            // Setting up S3 upload parameters
+            const params = {
+                Bucket: process.env.S3_BUCKET,
+                Key: `${fileName}`, // File name you want to get as in S3
+                Expires: 60 * 60 * 5
+            }
+
+            s3.getSignedUrlPromise('getObject', params)
+                .then((url) => resolve(url))
+                .catch(() => reject())
+
+        })
     }
 }
 

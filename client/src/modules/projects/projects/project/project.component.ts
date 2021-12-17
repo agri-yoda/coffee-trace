@@ -33,6 +33,8 @@ export class ProjectComponent implements OnInit {
   // SubSink Class
   private subSink = new SubSink()
 
+  hide = true
+
   async ngOnInit() {
     
     // Fetch Project
@@ -70,8 +72,8 @@ export class ProjectComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(InvitePeopleModalComponent, {
-      height: '90%',
-      width: '90%',
+      maxHeight: '90%',
+      maxWidth: '90%',
       autoFocus: true,
       hasBackdrop: true,
       disableClose: false,

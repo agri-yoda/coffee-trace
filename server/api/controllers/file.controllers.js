@@ -49,6 +49,32 @@ const FileControllers = {
             return SendError(res, error)
         }
 
+    },
+
+    async getSignedFileUrl(req, res, next) {
+        try {
+
+            // FileName from body
+            const { file_name } = req.body
+
+            S3.getFileUrl(file_name)
+                .then((url) => {
+
+                    // Send Status 200 response
+                    return res.status(200).json({
+                        message: 'Pre-signed for fetching file to the bucket is ready!',
+                        ttl: '60 minutes',
+                        url: url
+                    })
+                })
+                .catch((error) => {
+                    return SendError(res, error)
+                })
+
+        } catch (error) {
+            return SendError(res, error)
+        }
+
     }
 
 }

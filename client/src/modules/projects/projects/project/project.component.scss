@@ -31,7 +31,7 @@ mat-toolbar {
 }
 .top-detail{
     font-weight: bolder;
-    font-size: 40px;
+    font-size: 25px;
 }
 h1{
     margin-bottom: 0px;
@@ -45,4 +45,9 @@ h1{
 .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
     max-width: 90vw !important;
 }
+}
+
+.form-field{
+    display: block;
+    width: 100%;
 }

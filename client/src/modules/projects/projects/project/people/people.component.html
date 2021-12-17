@@ -6,19 +6,19 @@
             <div class="window">
                 <mat-form-field appearance="outline" class="col-md-5">
                     <mat-label>Project ID</mat-label>
-                    <input matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
+                    <input autocomplete="off" matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
                     <mat-icon matSuffix>fingerprint</mat-icon>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="col-md-6">
                     <mat-label>Project Name</mat-label>
-                    <input matInput [(ngModel)]="project.project_name" placeholder="Project Name" readonly>
+                    <input autocomplete="off" matInput [(ngModel)]="project.project_name" placeholder="Project Name" readonly>
                     <mat-icon matSuffix>badge</mat-icon>
                 </mat-form-field>
             </div>
             <div class="mt-4">
-                <button mat-raised-button color="blue-ryb" (click)="openDialog()">
+                <!-- <button mat-raised-button color="blue-ryb" (click)="openDialog()">
                     <mat-icon>person_add</mat-icon> Invite People
-                </button>
+                </button> -->
                 <mat-tab-group dynamicHeight>
                     <mat-tab label="People">
                     </mat-tab>
