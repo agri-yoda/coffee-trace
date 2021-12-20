@@ -49,12 +49,10 @@ const ProjectSchema = new Schema({
             default: 'default_csv'
         }
     },
-    coffee: {
-        csv: {
-            type: String,
-            default: 'default_csv'
-        }
-    },
+    coffees: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Coffee'
+    }],
     _owner: {
         type: Schema.Types.ObjectId,
         ref: 'User'

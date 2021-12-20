@@ -1,6 +1,9 @@
 // Auth Controllers
 const AuthControllers = require('./auth.controllers')
 
+// Coffee Controllers
+const CoffeeControllers = require('./coffee.controllers')
+
 // File Controllers
 const FileControllers = require('./file.controllers')
 
@@ -8,4 +11,4 @@ const FileControllers = require('./file.controllers')
 const ProjectControllers = require('./project.controllers')
 
 // Export Controllers
-module.exports = { AuthControllers, FileControllers, ProjectControllers }
+module.exports = { AuthControllers, CoffeeControllers, FileControllers, ProjectControllers }
