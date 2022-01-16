@@ -32,6 +32,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class CoffeeComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['Category', 'BotanicalVariety', 'PreparationMethod', 'CupScore'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+  tabactive = 'list';
 
   constructor(private _liveAnnouncer: LiveAnnouncer,private _Injector: Injector) { }
   
@@ -71,6 +72,10 @@ export class CoffeeComponent implements AfterViewInit, OnInit {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  viewchange(view: string){
+    this.tabactive = view;
   }
 
 }

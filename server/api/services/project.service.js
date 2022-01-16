@@ -1,5 +1,8 @@
 // Import Models
-const { Project, User } = require('../models')
+const {
+    Project,
+    User
+} = require('../models')
 
 // Project Service
 const ProjectService = {
@@ -15,9 +18,11 @@ const ProjectService = {
 
                 // Find the Project
                 const project = await Project.findOne({
-                    _id: projectId
-                })
+                        _id: projectId
+                    })
                     .populate('_owner', '_id first_name last_name email role')
+                    .populate('_invited_members', '_id first_name last_name email role')
+                    .populate('_joined_members', '_id first_name last_name email role')
 
                 // Resolve the promise
                 resolve(project)
@@ -25,7 +30,9 @@ const ProjectService = {
             } catch (error) {
 
                 // Catch the error and reject the promise
-                reject({ error: error })
+                reject({
+                    error: error
+                })
             }
         })
     },
@@ -55,11 +62,15 @@ const ProjectService = {
                 }
 
                 // Pushing the project into user's schema
-                await User.findOneAndUpdate(
-                    { _id: requestUserId },
-                    { $push: { projects: userProject } },
-                    { upsert: true }
-                )
+                await User.findOneAndUpdate({
+                    _id: requestUserId
+                }, {
+                    $push: {
+                        projects: userProject
+                    }
+                }, {
+                    upsert: true
+                })
 
                 // Resolve the promise
                 resolve(project)
@@ -67,7 +78,9 @@ const ProjectService = {
             } catch (error) {
 
                 // Catch the error and reject the promise
-                reject({ error: error })
+                reject({
+                    error: error
+                })
             }
         })
     },
@@ -85,9 +98,9 @@ const ProjectService = {
 
                 // Find the Projects
                 projects = await Project.find({
-                    _owner: requestUserId,
-                    active: true,
-                })
+                        _owner: requestUserId,
+                        active: true,
+                    })
                     .limit(20)
                     .sort('-created_date') || []
 
@@ -97,7 +110,9 @@ const ProjectService = {
             } catch (error) {
 
                 // Catch the error and reject the promise
-                reject({ error: error })
+                reject({
+                    error: error
+                })
             }
         })
     },
@@ -106,7 +121,7 @@ const ProjectService = {
      * This function is responsible for fetching all archived projects for currently loggedIn user
      * @returns 
      */
-     async getAllArchivedProjects(requestUserId) {
+    async getAllArchivedProjects(requestUserId) {
         return new Promise(async (resolve, reject) => {
             try {
 
@@ -115,9 +130,9 @@ const ProjectService = {
 
                 // Find the Projects
                 projects = await Project.find({
-                    _owner: requestUserId,
-                    active: false,
-                })
+                        _owner: requestUserId,
+                        active: false,
+                    })
                     .sort('-created_date') || []
 
                 // Resolve the promise
@@ -126,7 +141,9 @@ const ProjectService = {
             } catch (error) {
 
                 // Catch the error and reject the promise
-                reject({ error: error })
+                reject({
+                    error: error
+                })
             }
         })
     },
@@ -141,10 +158,12 @@ const ProjectService = {
 
                 // Find the Projects
                 const projects = await Project.find({
-                    _id: { $lte: lastProjectId },
-                    active: true,
-                    _owner: requestUserId
-                })
+                        _id: {
+                            $lte: lastProjectId
+                        },
+                        active: true,
+                        _owner: requestUserId
+                    })
                     .limit(5)
                     .sort('-created_date')
 
@@ -154,7 +173,65 @@ const ProjectService = {
             } catch (error) {
 
                 // Catch the error and reject the promise
-                reject({ error: error })
+                reject({
+                    error: error
+                })
+            }
+        })
+    },
+
+    /**
+     * Get Invited Users of Project
+     * @param {*} projectId 
+     * @returns 
+     */
+    async getInvitedUsers(projectId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+
+                // Find the Project
+                const project = await Project.findOne({
+                        _id: projectId
+                    })
+                    .populate('_invited_members', '_id first_name last_name email role')
+
+                // Resolve the promise
+                resolve(project)
+
+            } catch (error) {
+
+                // Catch the error and reject the promise
+                reject({
+                    error: error
+                })
+            }
+        })
+    },
+
+    /**
+     * Get Joined Users of Project
+     * @param {*} projectId 
+     * @returns 
+     */
+    async getJoinedUsers(projectId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+
+                // Find the Project
+                const project = await Project.findOne({
+                        _id: projectId
+                    })
+                    .populate('_joined_members', '_id first_name last_name email role')
+
+                // Resolve the promise
+                resolve(project)
+
+            } catch (error) {
+
+                // Catch the error and reject the promise
+                reject({
+                    error: error
+                })
             }
         })
     },
@@ -187,7 +264,9 @@ const ProjectService = {
             } catch (error) {
 
                 // Catch the error and reject the promise
-                reject({ error: error })
+                reject({
+                    error: error
+                })
             }
         })
     },
@@ -203,11 +282,15 @@ const ProjectService = {
             try {
 
                 // Pulling from the project into user's schema
-                await User.updateMany(
-                    {},
-                    { $pull: { projects: { _id: projectId } } },
-                    { multi: true }
-                )
+                await User.updateMany({}, {
+                    $pull: {
+                        projects: {
+                            _id: projectId
+                        }
+                    }
+                }, {
+                    multi: true
+                })
 
                 // Update the Project Data
                 const project = await Project.findOneAndRemove({
@@ -221,7 +304,9 @@ const ProjectService = {
             } catch (error) {
 
                 // Catch the error and reject the promise
-                reject({ error: error })
+                reject({
+                    error: error
+                })
             }
         })
     }

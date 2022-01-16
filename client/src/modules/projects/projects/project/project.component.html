@@ -1,21 +1,15 @@
 
 <div class="row mt-4 mb-4 row-top">
-    <div class="col-8">
-       <h2 class="top-detail">{{project.project_name}}</h2>
+    <div class="col-6">
+       <h1 class="top-detail">{{project.project_name}}</h1>
     </div>
-    <div class="col-4 col-right">
-        <!-- <mat-form-field class="form-field" appearance="outline">
-            <mat-label>Project ID</mat-label>
-            <input autofocus autocomplete="off" matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="project._id">
-            <button mat-icon-button matSuffix (click)="hide = !hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-          </mat-form-field> -->
+    <div class="col-6 col-right" style="padding-right: 0px;">
+        <h1 class="top-detail">{{project._id}}</h1>
      </div>
 </div>
 <hr>
 <div class="row mb-4">
-    <div class="col-6">
+    <div class="col-4">
         <mat-toolbar *ngIf="projectId">
 
             <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'plantation'" (click)="selectedRoute = 'plantation'" 
@@ -68,19 +62,19 @@
                  Files & Updates
             </button>
         
-            <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'settings'" (click)="selectedRoute = 'settings'"
+            <!-- <button mat-stroked-button color="accent" *ngIf="selectedRoute != 'settings'" (click)="selectedRoute = 'settings'"
             [routerLink]="['/saas', 'projects', this.projectId, 'settings']">
                  Settings
             </button>
             <button mat-raised-button color="accent" *ngIf="selectedRoute == 'settings'">
                  Settings
-            </button>
+            </button> -->
         
         </mat-toolbar>
     </div>
-    <div class="col-6 col-add-people">
+    <div class="col-8 col-add-people">
         <button mat-raised-button color="blue-ryb" (click)="openDialog()">
-            <mat-icon>person_add</mat-icon> Invite
+            Add Members
         </button>
     </div>
 </div>

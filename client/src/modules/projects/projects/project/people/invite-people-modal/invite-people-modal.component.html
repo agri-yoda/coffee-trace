@@ -2,12 +2,12 @@
 <div mat-dialog-content class="row">
     <mat-form-field class="full-width copy-link" appearance="outline" matTooltipPosition="above" matTooltip="Copy Project Link" (click)="copyToClipboard()">
         <mat-label class="copy-link">Project Link</mat-label>
-        <input autocomplete="off" class="copy-link" matInput [(ngModel)]="link" placeholder="Project Link" readonly>
+        <input class="copy-link" matInput [(ngModel)]="link" placeholder="Project Link" readonly>
         <mat-icon class="copy-link" matSuffix>link</mat-icon>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
         <mat-label>Email</mat-label>
-        <input autocomplete="off" matInput [(ngModel)]="email" placeholder="Email address">
+        <input matInput [(ngModel)]="email" placeholder="Email address">
         <mat-icon matSuffix>email</mat-icon>
     </mat-form-field>
     <!-- <img class="col-md-6" width="50%" height="50%" src="assets/svgs/new_project.svg"> -->

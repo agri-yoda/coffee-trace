@@ -330,7 +330,7 @@ $client-middle-red: (
 $client-theme: mat.define-light-theme((
   color: (
     primary: mat-palette($client-primary),
-    accent: mat-palette($client-primary),
+    accent: mat-palette($client-green),
     warn: mat-palette($client-paradise-pink),
   )
 ));

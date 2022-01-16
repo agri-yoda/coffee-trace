@@ -5,7 +5,9 @@ const mongoose = require('mongoose')
 const moment = require('moment')
 
 // Import Schema
-const { Schema } = mongoose
+const {
+    Schema
+} = mongoose
 
 // Create Schema
 const ProjectSchema = new Schema({
@@ -49,26 +51,22 @@ const ProjectSchema = new Schema({
             default: 'default_csv'
         }
     },
-    coffee: {
-        csv: {
-            type: String,
-            default: 'default_csv'
-        }
-    },
+    coffees: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Coffee'
+    }],
     _owner: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    invited_members: {
-        type: Map,
-        default: new Map(),
-        of: String,
-    },
-    joined_members: {
-        type: Map,
-        default: new Map(),
-        of: String,
-    },
+    _invited_members: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    _joined_members: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     profile_picture: {
         type: String,
         default: 'default_project.png'

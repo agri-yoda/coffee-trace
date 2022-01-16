@@ -1,7 +1,6 @@
 import { Component, Injector, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SubSink } from 'subsink';
-import { FilesService } from '../../services/files.service';
 import { CustomTableComponent } from '../custom-table/custom-table.component';
 
 @Component({
@@ -22,35 +21,14 @@ export class ViewTableComponent implements OnInit {
   // Columns
   @Input('columns') colHeaders = []
 
-  // URL
-  @Input('fileName') fileName = false
-
   // SubSink Class
   private subSink = new SubSink()
 
-  async ngOnInit() {
-    if(this.fileName != false){
-      let url = await this.getFileUrl(this.fileName)
-      console.log(url)
-    }
+  ngOnInit(): void {
   }
 
   ngOnDestroy() {
     this.subSink.unsubscribe()
-  }
-
-  /**
-   * This function fetches the signed URL from S3 Bucket
-   * @param file 
-   * @returns 
-   */
-   getFileUrl(fileName: any) {
-    return new Promise((resolve, reject) => {
-      let filesService = this._Injector.get(FilesService)
-      filesService.getFileURL(fileName)
-        .then((res: any) => resolve(res['url']))
-        .catch(() => reject(null))
-    })
   }
 
   openDialog() {

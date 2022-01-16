@@ -57,8 +57,7 @@ export class SettingsComponent implements OnInit {
         altitude: this.project.plantation.altitude,
         rainfall: this.project.plantation.rainfall,
         description_video: this.project.plantation.description_video,
-        region_and_bio: this.project.plantation.region_and_bio,
-        csv: this.project.plantation.csv
+        region_and_bio: this.project.plantation.region_and_bio
       }
     }
 

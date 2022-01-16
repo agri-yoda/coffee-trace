@@ -21,4 +21,29 @@ button {
     .mat-ink-bar {
         background-color: #1665D8 !important;
     }
+    .mat-button{
+        background-color: #1665D8 !important;
+        width: 100%;
+        color: white;
+    }
 }
+.search-col{
+    display: flex;
+    justify-content: flex-end;
+}
+.tabs-col{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.btn-tabs.active{
+    background: none;
+    color: #064fff;
+    border: none;
+}
+.btn-tabs{
+    background: none;
+    color: grey;
+    border: none;
+}
+

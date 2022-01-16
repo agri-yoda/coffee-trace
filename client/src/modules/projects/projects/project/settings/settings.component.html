@@ -6,7 +6,7 @@
             <div class="window">
                 <mat-form-field appearance="outline" class="col-md-5">
                     <mat-label>Project ID</mat-label>
-                    <input autocomplete="off" matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
+                    <input matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
                     <mat-icon matSuffix>fingerprint</mat-icon>
                 </mat-form-field>
             </div>
@@ -18,7 +18,7 @@
                     <mat-card-content *ngIf="project.active">
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Project Name</mat-label>
-                            <input autocomplete="off" matInput [(ngModel)]="project.project_name" placeholder="Project Name">
+                            <input matInput [(ngModel)]="project.project_name" placeholder="Project Name">
                             <mat-icon matSuffix>badge</mat-icon>
                         </mat-form-field>
                         <mat-form-field class="full-width" appearance="outline">
@@ -28,19 +28,19 @@
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="mt-2 full-width">
                             <mat-label>Plantation Area (in acres)</mat-label>
-                            <input autocomplete="off" matInput [(ngModel)]="project.plantation.area" placeholder="in acres" type="number">
+                            <input matInput [(ngModel)]="project.plantation.area" placeholder="in acres" type="number">
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Altitude (in mtrs)</mat-label>
-                            <input autocomplete="off" matInput [(ngModel)]="project.plantation.altitude" placeholder="in mtrs" type="number">
+                            <input matInput [(ngModel)]="project.plantation.altitude" placeholder="in mtrs" type="number">
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Rainfall (in cms)</mat-label>
-                            <input autocomplete="off" matInput [(ngModel)]="project.plantation.rainfall" placeholder="in cms" type="number">
+                            <input matInput [(ngModel)]="project.plantation.rainfall" placeholder="in cms" type="number">
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Plantation Video (use embed, if applicable)</mat-label>
-                            <input autocomplete="off" matInput [(ngModel)]="project.plantation.description_video" placeholder="Your plantation video URL" type="url">
+                            <input matInput [(ngModel)]="project.plantation.description_video" placeholder="Your plantation video URL" type="url">
                         </mat-form-field>
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>About Region & Bio Diversity</mat-label>

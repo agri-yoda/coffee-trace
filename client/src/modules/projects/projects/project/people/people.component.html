@@ -2,34 +2,49 @@
 
 <div class="container" *ngIf="!(isLoading$ | async)">
     <div class="row">
-        <div class="col-md-12">
-            <div class="window">
-                <mat-form-field appearance="outline" class="col-md-5">
-                    <mat-label>Project ID</mat-label>
-                    <input autocomplete="off" matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
-                    <mat-icon matSuffix>fingerprint</mat-icon>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="col-md-6">
-                    <mat-label>Project Name</mat-label>
-                    <input autocomplete="off" matInput [(ngModel)]="project.project_name" placeholder="Project Name" readonly>
-                    <mat-icon matSuffix>badge</mat-icon>
-                </mat-form-field>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Farmer's Leadership Team</h1>
+                </div>
+                <div class="col-5">
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                            <img mat-card-avatar class="example-header-image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                            <mat-card-title>Jamie Schneider</mat-card-title>
+                            <mat-card-subtitle>
+                                <div class="row no-margin">
+                                    CEO, Farmers Group
+                                </div>
+                                <div class="row no-margin">
+                                    10 Acre farms .... akijksnn
+                                </div>
+                            </mat-card-subtitle>
+                          </mat-card-header>
+                        <mat-card-content>
+                          <div class="row">
+                              <div class="col-4">
+                                <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" style="width: 100%; border-radius: 10%;">
+                              </div>
+                              <div class="col-4">
+                                <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" style="width: 100%; border-radius: 10%;">
+                              </div>
+                              <div class="col-4">
+                                <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" style="width: 100%; border-radius: 10%;">
+                              </div>
+                          </div>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <button mat-button>View Profile</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
             </div>
-            <div class="mt-4">
-                <!-- <button mat-raised-button color="blue-ryb" (click)="openDialog()">
-                    <mat-icon>person_add</mat-icon> Invite People
-                </button> -->
-                <mat-tab-group dynamicHeight>
-                    <mat-tab label="People">
-                    </mat-tab>
-                    <mat-tab label="Invited People">
-                    </mat-tab>
-                </mat-tab-group>
-                <!-- <mat-card class="mt-4">
-                    <mat-card-content>
-                    </mat-card-content>
-                </mat-card> -->
-            </div>
+            
+            
+        </div>
+        <div class="col-3">
+            some other data
         </div>
     </div>
 </div>

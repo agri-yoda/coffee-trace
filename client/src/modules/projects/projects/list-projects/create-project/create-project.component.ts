@@ -34,8 +34,8 @@ export class CreateProjectComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(CreateProjectModalComponent, {
-      maxHeight: '90%',
-      maxWidth: '90%',
+      height: '90%',
+      width: '90%',
       autoFocus: true,
       hasBackdrop: true,
       disableClose: false,

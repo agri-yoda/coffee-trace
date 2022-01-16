@@ -1,6 +1,9 @@
 // Auth Routes
 const AuthRoutes = require('./auth.routes')
 
+// Coffee Routes
+const CoffeeRoutes = require('./coffee.routes')
+
 // File Routes
 const FileRoutes = require('./file.routes')
 
@@ -8,4 +11,4 @@ const FileRoutes = require('./file.routes')
 const ProjectRoutes = require('./project.routes')
 
 // Export Routes
-module.exports = { AuthRoutes, FileRoutes, ProjectRoutes }
+module.exports = { AuthRoutes, CoffeeRoutes, FileRoutes, ProjectRoutes }
