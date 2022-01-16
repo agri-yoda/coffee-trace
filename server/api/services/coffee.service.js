@@ -111,9 +111,7 @@ const CoffeeService = {
                 // Pulling from the Coffee into user's schema
                 await Project.updateMany({}, {
                     $pull: {
-                        coffees: {
-                            _id: coffeeId
-                        }
+                        coffees: coffeeId
                     }
                 }, {
                     multi: true
