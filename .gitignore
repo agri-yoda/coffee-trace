@@ -1,7 +1,3 @@
 # Package lock files
 package-lock.json
 yarn.lock
-
-client/package-lock.json
-client/src/modules/projects/projects/project/plantation/plantation.component.scss
-client.zip
