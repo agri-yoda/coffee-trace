@@ -35,7 +35,7 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Category">
                 Category
               </th>
-              <td mat-cell *matCellDef="let element"> {{element.Category}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.attributes.category}} </td>
             </ng-container>
             
             <!-- Name Column -->
@@ -43,7 +43,7 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by BotanicalVariety">
                 Botanical Variety
               </th>
-              <td mat-cell *matCellDef="let element"> {{element.BotanicalVariety}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.attributes.botanical_variety}} </td>
             </ng-container>
             
             <!-- Weight Column -->
@@ -51,7 +51,7 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by PreparationMethod">
                 Preparation Method
               </th>
-              <td mat-cell *matCellDef="let element"> {{element.PreparationMethod}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.attributes.preparation_method}} </td>
             </ng-container>
             
             <!-- Symbol Column -->
@@ -59,7 +59,7 @@
               <th mat-header-cell *matHeaderCellDef>
                 Cup Score
               </th>
-              <td mat-cell *matCellDef="let element"> <mat-progress-bar mode="determinate" value="40"></mat-progress-bar> </td>
+              <td mat-cell *matCellDef="let element"> <mat-progress-bar mode="determinate" value="{{element.attributes.cup_score}}"></mat-progress-bar> </td>
             </ng-container>
             
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -72,7 +72,7 @@
               <div class="row">
                 <div class="col-4">
                   <mat-card class="example-card">
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                    <img mat-card-image src="assets/images/coffee.jpeg" alt="Photo of a Shiba Inu">
                     <mat-card-header>
                       <div mat-card-avatar class="example-header-image"></div>
                       <mat-card-title>Mild Arabica</mat-card-title>

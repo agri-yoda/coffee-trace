@@ -1,3 +1,7 @@
+<head>
+  
+</head>
+
 <mat-spinner *ngIf="(isLoading$ | async)" color="accent"></mat-spinner>
 
 <div class="main-container" *ngIf="!(isLoading$ | async)">
@@ -189,8 +193,15 @@
         <div class="col-6 map-col">
             <div class="row">
                 <div class="container">
-                    <div class="map-container">
-                      <img src="http://res.cloudinary.com/slzr/image/upload/v1500321012/world-map-1500_vvekl5.png" style="width: 100%;">
+                     <div class="map-container" style="width: 100%;">
+                        <agm-map [latitude]="51.678418" [longitude]="7.809007" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" [fullscreenControl]='true' [mapTypeControl]='true' [mapTypeId]="'satellite'">
+                            <agm-marker [latitude]="51.678418" [longitude]="7.809007"></agm-marker>
+                            <agm-marker 
+                                *ngFor="let m of markers; let i = index"
+                                [latitude]="m.lat"
+                                [longitude]="m.lng"></agm-marker>
+                        </agm-map>
+                      <!-- <img src="http://res.cloudinary.com/slzr/image/upload/v1500321012/world-map-1500_vvekl5.png" style="width: 100%;">
                       <div class="point venezuela tippy" title="Venezuela"></div>
                       <div class="point brasil tippy" title="Brasil"></div>
                       <div class="point argentina tippy" title="Argentina"></div>
@@ -203,8 +214,9 @@
                       <div class="point rusia tippy" title="Rusia"></div>
                       <div class="point china tippy" title="China"></div>
                       <div class="point japon tippy" title="Japon"></div>
-                      <div class="point australia tippy" title="Australia"></div>
-                    </div>
+                      <div class="point australia tippy" title="Australia"></div> -->
+                    </div> 
+                    
                 </div>
                                     
             </div>
@@ -225,3 +237,4 @@
         </div>
     </div>
 </div>
+

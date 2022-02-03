@@ -1,1 +1,29 @@
 @import 'src/modules/projects/projects/project/plantation/plantation.component.scss';
+::ng-deep{
+    .mat-button{
+        background-color: #1665D8 !important;
+        width: 100%;
+        color: white;
+    }
+    .mat-card-header-text {
+        margin: 10px 0px 0px 0px !important;
+    }
+    .mat-card-header .mat-card-title {
+        font-size: 17px !important;
+    }
+}
+.top-icon{
+    position: absolute;
+    top: -20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background: #6758F3;
+    color: white;
+}
+.active-card{
+    border: 2px solid #34AA44;
+}
+.active-icon{
+    background: #34AA44 !important;
+}

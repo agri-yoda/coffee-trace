@@ -20,6 +20,7 @@ import { MatSortModule } from "@angular/material/sort";
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { InvitePeopleModalComponent } from './projects/project/people/invite-people-modal/invite-people-modal.component';
 import { TableSortingExampleComponent } from './projects/project/table-sorting-example/table-sorting-example.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,12 @@ import { TableSortingExampleComponent } from './projects/project/table-sorting-e
     ProjectsRoutingModule,
     SharedModule,
     NgxCsvParserModule,
-    MatSortModule
+    MatSortModule,
+    AgmCoreModule.forRoot({
+      // please get your own API key here:
+      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+      apiKey: 'AIzaSyBDg13IWUNvq6F28pTlhWnEw7n9a1u-4K0'
+    })
   ]
 })
 export class ProjectsModule { }

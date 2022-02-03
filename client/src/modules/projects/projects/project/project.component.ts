@@ -17,6 +17,7 @@ export class ProjectComponent implements OnInit {
 
   // Project ID
   projectId = this.activatedRoute.snapshot.paramMap.get('id')
+  
 
   // Projects Service
   projectsService = this._Injector.get(ProjectsService)
@@ -37,6 +38,7 @@ export class ProjectComponent implements OnInit {
     
     // Fetch Project
     this.project = await this.getProject(this.projectId)
+    console.log('params', this.projectId, this.activatedRoute.snapshot)
 
     // Set the Highlighted tab value
     this.selectedRoute = this._Router.url.split('/')[this._Router.url.split('/').length-1]

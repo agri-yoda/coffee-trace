@@ -43,6 +43,38 @@ const CoffeeControllers = {
         }
     },
 
+
+    /**
+     * Get All Coffee Controller
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     */
+     async getAllCoffee(req, res, next) {
+        try {
+
+            // Fetch the data from the params
+            const projectId = req.params
+            console.log('inside controller', projectId)
+
+            CoffeeService.getAllCoffee(projectId.projectId)
+                .then((data) => {
+
+                    // Send Status 200 response
+                    return res.status(200).json({
+                        message: 'Coffee details fetched successfully!',
+                        coffee: data
+                    })
+                })
+                .catch((error) => {
+                    return SendError(res, error)
+                })
+
+        } catch (error) {
+            return SendError(res, error)
+        }
+    },
+
     /**
      * Create Coffee Controller
      * @param {*} req 
@@ -53,9 +85,8 @@ const CoffeeControllers = {
         try {
 
             // Fetch the data from the body
-            const {
-                coffee
-            } = req.body
+            const coffee = req.body
+            console.log('controller', coffee)
 
             CoffeeService.createCoffee(coffee)
                 .then((data) => {

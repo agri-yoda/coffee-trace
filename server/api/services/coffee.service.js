@@ -36,6 +36,30 @@ const CoffeeService = {
         })
     },
 
+    async getAllCoffee(projectId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+
+                console.log('inside service', projectId)
+                // Find the coffee
+                // const project = await Project.findById(
+                //     projectId
+                //     );
+                const coffees = await Coffee.find({ 'origin._plantation': projectId});
+                console.log(coffees)
+                // Resolve the promise
+                resolve(coffees)
+
+            } catch (error) {
+
+                // Catch the error and reject the promise
+                reject({
+                    error: error
+                })
+            }
+        })
+    },
+
     /**
      * Create a new Coffee
      * @param {*} coffee_name 
@@ -45,8 +69,12 @@ const CoffeeService = {
         return new Promise(async (resolve, reject) => {
             try {
 
+                console.log('service', coffeeData)
                 // Create the Coffee
-                const coffee = await Coffee.create(coffeeData)
+
+                console.log('coffee.origin',coffeeData.coffee.attributes.category)
+                const coffee = await Coffee.create(coffeeData.coffee)
+
 
                 // Pushing the Coffee into user's schema
                 await Project.findByIdAndUpdate(

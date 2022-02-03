@@ -7,3 +7,14 @@ mat-card {
 .no-margin{
     margin: 0px !important;
 }
+::ng-deep{
+    .mat-button{
+        background-color: #1665D8 !important;
+        width: 100%;
+        color: white;
+    }
+}
+.prof-images{
+    width: 100px;
+    height: 70px;
+}

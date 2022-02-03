@@ -20,13 +20,16 @@ const routes: Routes = [
       {
         path: ':id', component: ProjectComponent, children: [
           { path: 'plantation', component: PlantationComponent },
-          { path: 'coffee', component: CoffeeComponent },
+          // { path: 'coffee', component: CoffeeComponent },
           { path: 'dashboard', component: DashboardComponent },
           { path: 'files', component: FilesComponent },
           { path: 'people', component: PeopleComponent },
           { path: 'settings', component: SettingsComponent },
           { path: 'tablesort', component: TableSortingExampleComponent }
         ]
+      },
+      {
+        path: ':id/coffee', component: CoffeeComponent
       }
     ]
   }
