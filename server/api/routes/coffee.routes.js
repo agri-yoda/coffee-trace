@@ -22,11 +22,14 @@ router.route('/')
         // Create Project 
         .post(CoffeeControllers.createCoffee)
 
+// Get next 5 recent projects
+router.get('/next', CoffeeControllers.getRecentCoffees)
+
 // Route Definition
-router.route('/all/:projectId')
+router.route('/recent')
 
         // Create Project 
-        .get(CoffeeControllers.getAllCoffee)
+        .get(CoffeeControllers.getRecentCoffees)
 
 // Route definition
 router.route('/:coffeeId')

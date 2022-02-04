@@ -36,19 +36,54 @@ const CoffeeService = {
         })
     },
 
-    async getAllCoffee(projectId) {
+    /**
+     * This function is responsible for fetching 20 recent coffees for current project
+     * @returns 
+     */
+    async getRecentCoffees(projectId) {
         return new Promise(async (resolve, reject) => {
             try {
 
-                console.log('inside service', projectId)
-                // Find the coffee
-                // const project = await Project.findById(
-                //     projectId
-                //     );
-                const coffees = await Coffee.find({ 'origin._plantation': projectId});
-                console.log(coffees)
+                // Fetch all the coffees
+                const coffees = await Coffee
+                .find({ 'origin._plantation': projectId, active: true })
+                .limit(20)
+                .sort('-created_date') || []
+
                 // Resolve the promise
                 resolve(coffees)
+
+            } catch (error) {
+
+                // Catch the error and reject the promise
+                reject({
+                    error: error
+                })
+            }
+        })
+    },
+
+    /**
+     * This function is responsible for fetching next 5 recent coffees for current project
+     * @returns 
+     */
+     async getNextCoffees(lastCoffeeId, projectId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+
+                // Find the Projects
+                const projects = await Project.find({
+                        _id: {
+                            $lte: lastCoffeeId
+                        },
+                        active: true,
+                        'origin._plantation': projectId
+                    })
+                    .limit(5)
+                    .sort('-created_date') || []
+
+                // Resolve the promise
+                resolve(projects)
 
             } catch (error) {
 
@@ -69,14 +104,10 @@ const CoffeeService = {
         return new Promise(async (resolve, reject) => {
             try {
 
-                console.log('service', coffeeData)
                 // Create the Coffee
-
-                console.log('coffee.origin',coffeeData.coffee.attributes.category)
                 const coffee = await Coffee.create(coffeeData.coffee)
 
-
-                // Pushing the Coffee into user's schema
+                // Pushing the Coffee into project's schema
                 await Project.findByIdAndUpdate(
                     coffee.origin._plantation,
                     { $push: { coffees: coffee } },

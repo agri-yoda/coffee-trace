@@ -20,7 +20,8 @@ import { MatSortModule } from "@angular/material/sort";
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { InvitePeopleModalComponent } from './projects/project/people/invite-people-modal/invite-people-modal.component';
 import { TableSortingExampleComponent } from './projects/project/table-sorting-example/table-sorting-example.component';
-import { AgmCoreModule } from '@agm/core';
+import { PlantationCardsComponent } from './projects/project/plantation/plantation-cards/plantation-cards.component';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AgmCoreModule } from '@agm/core';
     PeopleComponent,
     SettingsComponent,
     InvitePeopleModalComponent,
-    TableSortingExampleComponent
+    TableSortingExampleComponent,
+    PlantationCardsComponent
   ],
   imports: [
     CommonModule,
@@ -45,11 +47,11 @@ import { AgmCoreModule } from '@agm/core';
     SharedModule,
     NgxCsvParserModule,
     MatSortModule,
-    AgmCoreModule.forRoot({
-      // please get your own API key here:
-      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
-      apiKey: 'AIzaSyBDg13IWUNvq6F28pTlhWnEw7n9a1u-4K0'
-    })
+    // AgmCoreModule.forRoot({
+    //   // please get your own API key here:
+    //   // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+    //   apiKey: 'AIzaSyBDg13IWUNvq6F28pTlhWnEw7n9a1u-4K0'
+    // })
   ]
 })
 export class ProjectsModule { }

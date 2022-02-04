@@ -3,22 +3,20 @@
 <div class="container" *ngIf="!(isLoading$ | async)">
     <div class="row">
         <div class="col-md-12">
-            <div class="window">
-                <mat-form-field appearance="outline" class="col-md-5">
-                    <mat-label>Project ID</mat-label>
-                    <input matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
-                    <mat-icon matSuffix>fingerprint</mat-icon>
-                </mat-form-field>
-            </div>
             <div class="mb-4">
                 <mat-card>
                     <mat-card-title-group *ngIf="project.active">
-                        <img class="feed-avatar" src="https://cdn.pixabay.com/photo/2013/08/11/19/46/coffee-171653_960_720.jpg">
+                        <img class="feed-avatar" [src]="project.profile_picture">
                     </mat-card-title-group>
                     <mat-card-content *ngIf="project.active">
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Project Name</mat-label>
                             <input matInput [(ngModel)]="project.project_name" placeholder="Project Name">
+                            <mat-icon matSuffix>badge</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Profile Picture</mat-label>
+                            <input matInput [(ngModel)]="project.profile_picture" placeholder="Profile Picture">
                             <mat-icon matSuffix>badge</mat-icon>
                         </mat-form-field>
                         <mat-form-field class="full-width" appearance="outline">

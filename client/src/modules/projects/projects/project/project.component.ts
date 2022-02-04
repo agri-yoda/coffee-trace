@@ -1,5 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectsService } from 'src/modules/shared/services/projects.service';
 import { UtilityService } from 'src/modules/shared/services/utility.service';
@@ -13,11 +14,10 @@ import { InvitePeopleModalComponent } from '../project/people/invite-people-moda
 })
 export class ProjectComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private _Injector: Injector, private _Router: Router,public dialog: MatDialog) { }
+  constructor(private activatedRoute: ActivatedRoute, private _Injector: Injector, private _Router: Router,public dialog: MatDialog, private _SnackBar: MatSnackBar) { }
 
   // Project ID
   projectId = this.activatedRoute.snapshot.paramMap.get('id')
-  
 
   // Projects Service
   projectsService = this._Injector.get(ProjectsService)
@@ -30,6 +30,9 @@ export class ProjectComponent implements OnInit {
 
   // Selected Route
   selectedRoute = 'plantation'
+
+  // State
+  hide = true
 
   // SubSink Class
   private subSink = new SubSink()
@@ -70,10 +73,22 @@ export class ProjectComponent implements OnInit {
     this.subSink.unsubscribe()
   }
 
+  /**
+   * Copies the current text to dom
+   */
+  copyToClipboard(text: any) {
+    let utilityService = this._Injector.get(UtilityService)
+    utilityService.copyMessage(text)
+    this._SnackBar.open('Copied to Clipboard! 🎉', '', {
+      duration: 1500,
+      panelClass: ['black-snackbar']
+    })
+  }
+
   openDialog() {
     const dialogRef = this.dialog.open(InvitePeopleModalComponent, {
-      height: '90%',
-      width: '90%',
+      maxHeight: '90%',
+      maxWidth: '90%',
       autoFocus: true,
       hasBackdrop: true,
       disableClose: false,

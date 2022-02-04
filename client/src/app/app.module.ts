@@ -18,7 +18,7 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from "ngx-ui-loader";
 import { PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { MaterialModule } from 'src/modules/material/material.module';
 import { MatSortModule } from "@angular/material/sort";
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 
 // Configs
 import config from 'src/configs/ngx-ui-config';
@@ -50,17 +50,17 @@ import { AuthInterceptor } from 'src/modules/shared/interceptors/auth.intercepto
     // Material Module
     MaterialModule,
 
-    AgmCoreModule.forRoot({
-      // please get your own API key here:
-      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
-      apiKey: 'AIzaSyBDg13IWUNvq6F28pTlhWnEw7n9a1u-4K0'
-    }),
+    // AgmCoreModule.forRoot({
+    //   // please get your own API key here:
+    //   // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+    //   apiKey: 'AIzaSyBDg13IWUNvq6F28pTlhWnEw7n9a1u-4K0'
+    // }),
 
     // NGX UI Module
     NgxUiLoaderModule.forRoot(config),
 
     // NGX UI HTTP Module
-    NgxUiLoaderHttpModule.forRoot({ showForeground: true })
+    // NgxUiLoaderHttpModule.forRoot({ showForeground: true })
   ],
   providers: [
 

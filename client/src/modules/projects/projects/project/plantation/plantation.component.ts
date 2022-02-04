@@ -5,7 +5,7 @@ import { NgxCsvParser } from 'ngx-csv-parser';
 import { NgxCSVParserError } from 'ngx-csv-parser';
 import { FilesService } from 'src/modules/shared/services/files.service';
 import { ProjectsService } from 'src/modules/shared/services/projects.service';
-import { MouseEvent } from '@agm/core';
+// import { MouseEvent } from '@agm/core';
 
 @Component({
   selector: 'app-plantation',
@@ -162,9 +162,7 @@ export class PlantationComponent implements OnInit {
   updatePlantationCSV(csv: any){
     return new Promise((resolve, reject)=>{
       let projectData = {
-        plantation: {
-          csv: csv
-        }
+        'plantation.csv': csv
       }
       let projectService = this._Injector.get(ProjectsService)
       projectService.updateProject(this.project._id, projectData)

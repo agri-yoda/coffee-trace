@@ -43,27 +43,55 @@ const CoffeeControllers = {
         }
     },
 
-
     /**
-     * Get All Coffee Controller
+     * Get 20 Recent Coffee Controller
      * @param {*} req 
      * @param {*} res 
      * @param {*} next 
      */
-     async getAllCoffee(req, res, next) {
+     async getRecentCoffees(req, res, next) {
         try {
 
             // Fetch the data from the params
             const projectId = req.params
-            console.log('inside controller', projectId)
 
-            CoffeeService.getAllCoffee(projectId.projectId)
+            CoffeeService.getRecentCoffees(projectId.projectId)
                 .then((data) => {
 
                     // Send Status 200 response
                     return res.status(200).json({
-                        message: 'Coffee details fetched successfully!',
+                        message: 'Recent coffees list fetched successfully!',
                         coffee: data
+                    })
+                })
+                .catch((error) => {
+                    return SendError(res, error)
+                })
+
+        } catch (error) {
+            return SendError(res, error)
+        }
+    },
+
+    /**
+     * Get Next 5 Recent Coffee Controller
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     */
+    async getNextCoffeeProjects(req, res, next) {
+        try {
+
+            // Fetch the data from the params
+            const { lastCoffeeId, projectId } = req.params
+
+            CoffeeService.getNextCoffees(lastCoffeeId, projectId)
+                .then((data) => {
+
+                    // Send Status 200 response
+                    return res.status(200).json({
+                        message: 'Next 5 coffees fetched successfully!',
+                        projects: data
                     })
                 })
                 .catch((error) => {
@@ -86,7 +114,6 @@ const CoffeeControllers = {
 
             // Fetch the data from the body
             const coffee = req.body
-            console.log('controller', coffee)
 
             CoffeeService.createCoffee(coffee)
                 .then((data) => {
