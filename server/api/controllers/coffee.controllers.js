@@ -52,8 +52,8 @@ const CoffeeControllers = {
      async getRecentCoffees(req, res, next) {
         try {
 
-            // Fetch the data from the params
-            const projectId = req.params
+            // Fetch the data from the query
+            const projectId = req.query
 
             CoffeeService.getRecentCoffees(projectId.projectId)
                 .then((data) => {
