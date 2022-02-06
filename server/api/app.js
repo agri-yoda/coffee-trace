@@ -14,10 +14,13 @@ const morgan = require('morgan')
 const app = express()
 
 // Routes
-const { AuthRoutes, CoffeeRoutes, FileRoutes, ProjectRoutes } = require('./routes')
+const { AuthRoutes, CoffeeRoutes, FileRoutes, MailRoutes, ProjectRoutes } = require('./routes')
 
 // Cors middleware for origin and Headers
 app.use(cors())
+
+// Set the View Engine
+app.set('view engine', 'ejs')
 
 // Adding The 'body-parser' middleware only handles JSON and urlencoded data
 app.use(express.json())
@@ -29,6 +32,7 @@ app.use(morgan('dev'))
 app.use('/api/v1/auths', AuthRoutes)
 app.use('/api/v1/coffees', CoffeeRoutes)
 app.use('/api/v1/files', FileRoutes)
+app.use('/api/v1/mails', MailRoutes)
 app.use('/api/v1/projects', ProjectRoutes)
 
 // Invalid routes handling middleware

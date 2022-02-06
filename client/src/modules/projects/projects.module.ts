@@ -21,7 +21,9 @@ import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { InvitePeopleModalComponent } from './projects/project/people/invite-people-modal/invite-people-modal.component';
 import { TableSortingExampleComponent } from './projects/project/table-sorting-example/table-sorting-example.component';
 import { PlantationCardsComponent } from './projects/project/plantation/plantation-cards/plantation-cards.component';
-// import { AgmCoreModule } from '@agm/core';
+
+// Maps Module
+import { MapsModule } from '../maps/maps.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { PlantationCardsComponent } from './projects/project/plantation/plantati
     SharedModule,
     NgxCsvParserModule,
     MatSortModule,
+    MapsModule
     // AgmCoreModule.forRoot({
     //   // please get your own API key here:
     //   // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
