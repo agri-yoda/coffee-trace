@@ -1,36 +1,145 @@
 <mat-spinner *ngIf="(isLoading$ | async)" color="accent"></mat-spinner>
 
-<div class="main-container" *ngIf="!(isLoading$ | async)">
+<div class="container">
+  <mat-tab-group dynamicHeight mat-align-tabs="center">
 
+    <mat-tab label="All Coffee">
+      <div class="row mt-4">
+        <div class="col-md-4 tabs-col">
+          <button type="button" class="btn btn-tabs" (click)="viewchange('list')"
+            ngClass="{{tabactive === 'list' ? 'active': '' }}">
+            <mat-icon>list</mat-icon>
+          </button>
+          <button type="button" class="btn btn-tabs" (click)="viewchange('grid')"
+            ngClass="{{tabactive === 'grid' ? 'active': '' }}">
+            <mat-icon>grid_view</mat-icon>
+          </button>
+        </div>
+        <div class="col-md-4 offset-4 search-col">
+          <mat-form-field appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="arabica" #input>
+            <mat-icon matSuffix style="color: #9EA0A5;">search</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <ng-container *ngIf="tabactive === 'list'">
+        <div class="row">
+          <div class="col-md-12">
 
-    <!-- LIST vs GRID -->
-    <div class="">
-      <mat-tab-group class="remove-border-bottom" mat-align-tabs="center">
-        <mat-tab label="All Coffee">
+            <ng-container *ngIf="!(isLoading$ | async) && dataSource.data.length === 0">
+              <img class="loading-placeholder" src="assets/svgs/no_files.svg">
+            </ng-container>
 
-          <!-- Top Row with tabs and search -->
-            <div class="row">
+            <table mat-table [hidden]="!(!(isLoading$ | async) && dataSource.data.length > 0)" [dataSource]="dataSource"
+              matSort class="mat-elevation-z8">
 
-              <div class="col-4 tabs-col">
-                <button type="button" class="btn btn-tabs" (click)="viewchange('list')" ngClass="{{tabactive === 'list' ? 'active': '' }}" ><mat-icon>list</mat-icon> </button>
-                <button type="button" class="btn btn-tabs" (click)="viewchange('grid')" ngClass="{{tabactive === 'grid' ? 'active': '' }}" ><mat-icon>grid_view</mat-icon> </button>
-              </div>
-              <div class="col-4 offset-4 search-col">
-                <mat-form-field appearance="outline">
-                  <mat-label>Search</mat-label>
-                  <input matInput (keyup)="applyFilter($event)" placeholder="arabica" #input>
-                  <mat-icon matSuffix style="color: #9EA0A5;">search</mat-icon>
-                </mat-form-field>
-              </div>
+              <ng-container *ngFor="let disCol of displayedColumns; let colIndex = index" matColumnDef="{{disCol}}">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ disCol }}</th>
+                <td mat-cell *matCellDef="let element "> {{ element[disCol] }}
+                </td>
+              </ng-container>
 
-            </div>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-            <!-- List Data -->
-            <ng-container *ngIf="tabactive === 'list'">
+            </table>
+
+            <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[10, 50, 100]" showFirstLastButtons>
+            </mat-paginator>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="tabactive === 'grid'">
+
+      </ng-container>
+    </mat-tab>
+
+    <mat-tab label="Similar Coffee">
+      <div class="row mt-4">
+        <div class="col-md-4 tabs-col">
+          <button type="button" class="btn btn-tabs" (click)="viewchange('list')"
+            ngClass="{{tabactive === 'list' ? 'active': '' }}">
+            <mat-icon>list</mat-icon>
+          </button>
+          <button type="button" class="btn btn-tabs" (click)="viewchange('grid')"
+            ngClass="{{tabactive === 'grid' ? 'active': '' }}">
+            <mat-icon>grid_view</mat-icon>
+          </button>
+        </div>
+        <div class="col-md-4 offset-4 search-col">
+          <mat-form-field appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="arabica" #input>
+            <mat-icon matSuffix style="color: #9EA0A5;">search</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <ng-container *ngIf="tabactive === 'list'">
+        <div class="row">
+          <div class="col-md-12">
+
+            <ng-container *ngIf="!(isLoading$ | async) && dataSource.data.length === 0">
+              <img class="loading-placeholder" src="assets/svgs/no_files.svg">
+            </ng-container>
+
+            <table mat-table [hidden]="!(!(isLoading$ | async) && dataSource.data.length > 0)" [dataSource]="dataSource"
+              matSort class="mat-elevation-z8">
+
+              <ng-container *ngFor="let disCol of displayedColumns; let colIndex = index" matColumnDef="{{disCol}}">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ disCol }}</th>
+                <td mat-cell *matCellDef="let element "> {{ element[disCol] }}
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+
+            <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[10, 50, 100]" showFirstLastButtons>
+            </mat-paginator>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="tabactive === 'grid'">
+
+      </ng-container>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<!-- <div class="main-container" *ngIf="!(isLoading$ | async)">
+  <div class="">
+    <mat-tab-group class="remove-border-bottom" mat-align-tabs="center">
+      <mat-tab label="All Coffee">
+
+        <div class="row">
+
+          <div class="col-4 tabs-col">
+            <button type="button" class="btn btn-tabs" (click)="viewchange('list')"
+              ngClass="{{tabactive === 'list' ? 'active': '' }}">
+              <mat-icon>list</mat-icon>
+            </button>
+            <button type="button" class="btn btn-tabs" (click)="viewchange('grid')"
+              ngClass="{{tabactive === 'grid' ? 'active': '' }}">
+              <mat-icon>grid_view</mat-icon>
+            </button>
+          </div>
+          <div class="col-4 offset-4 search-col">
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="arabica" #input>
+              <mat-icon matSuffix style="color: #9EA0A5;">search</mat-icon>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+         <ng-container *ngIf="tabactive === 'list'">
               <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
               class="mat-elevation-z8">
             
-            <!-- Position Column -->
             <ng-container matColumnDef="Category">
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Category">
                 Category
@@ -38,7 +147,6 @@
               <td mat-cell *matCellDef="let element"> {{element.attributes.category}} </td>
             </ng-container>
             
-            <!-- Name Column -->
             <ng-container matColumnDef="BotanicalVariety">
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by BotanicalVariety">
                 Botanical Variety
@@ -46,15 +154,13 @@
               <td mat-cell *matCellDef="let element"> {{element.attributes.botanical_variety}} </td>
             </ng-container>
             
-            <!-- Weight Column -->
             <ng-container matColumnDef="PreparationMethod">
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by PreparationMethod">
                 Preparation Method
               </th>
               <td mat-cell *matCellDef="let element"> {{element.attributes.preparation_method}} </td>
             </ng-container>
-            
-            <!-- Symbol Column -->
+          
             <ng-container matColumnDef="CupScore">
               <th mat-header-cell *matHeaderCellDef>
                 Cup Score
@@ -67,8 +173,7 @@
               </table>
             </ng-container>
 
-            <!-- Card Data -->
-            <ng-container *ngIf="tabactive === 'grid'">
+         <ng-container *ngIf="tabactive === 'grid'">
               <div class="row">
                 <div class="col-4">
                   <mat-card class="example-card">
@@ -128,11 +233,11 @@
               
             </ng-container>
 
-        </mat-tab>
-        <mat-tab label="Similar Coffee">
-          Sinilar Coffee Data
-        </mat-tab>
-      </mat-tab-group>
-    </div>
+      </mat-tab>
+      <mat-tab label="Similar Coffee">
+        Sinilar Coffee Data
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 
-</div>
+</div> -->

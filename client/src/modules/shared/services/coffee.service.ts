@@ -33,11 +33,11 @@ export class CoffeeService {
   }
 
   /**
-   * This function is responsible for fetching all archive projects
-   * @returns first 20 projects
+   * This function is responsible for fetching recent coffee
+   * @returns recent 20 coffees
    */
-   getAllCoffee(projectId: any) {
-    return this._HTTP.get(this.BASE_API_URL + `/all/${projectId}`)
+   getRecentCoffee(projectId: any) {
+    return this._HTTP.get(this.BASE_API_URL + `/recent?projectId=${projectId}`)
       .toPromise()
   }
 
