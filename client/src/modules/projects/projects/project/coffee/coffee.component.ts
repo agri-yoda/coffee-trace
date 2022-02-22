@@ -50,8 +50,12 @@ export class CoffeeComponent implements AfterViewInit, OnInit {
 
   // Columns list
   @Input('columns') displayedColumns: string[] = [
-    'active',
-    'attributes'
+    'bean_sizes',
+    'botanical_variety',
+    'category',
+    'preparation_method',
+    'grade',
+    'cup_score'
   ]
 
   // Project Details
@@ -70,6 +74,9 @@ export class CoffeeComponent implements AfterViewInit, OnInit {
 
     // Fill up the coffee data
     this.data = await this.getRecentCoffee(this.project._id)
+
+    // Map the attributes
+    this.data = this.getAttributes(this.data)
 
     // Populate datasource
     this.populateDatasource(this.data)
@@ -110,6 +117,10 @@ export class CoffeeComponent implements AfterViewInit, OnInit {
           reject([])
         })
     })
+  }
+
+  getAttributes(data: any){
+    return data.map((coffee: any) => coffee.attributes)
   }
 
   populateDatasource(dataSet: any) {

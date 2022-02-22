@@ -51,7 +51,27 @@
         </div>
       </ng-container>
       <ng-container *ngIf="tabactive === 'grid'">
-
+        <div class="row">
+          <div class="col-4" *ngFor="let coffee of data; let i = index;">
+            <mat-card class="example-card">
+              <img mat-card-image src="assets/images/coffee.jpeg" alt="Photo of a Shiba Inu">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{coffee?.category}}</mat-card-title>
+                <mat-card-subtitle>{{coffee?.grade}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  {{coffee?.description}}
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button>Order a Sample</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+        
       </ng-container>
     </mat-tab>
 
@@ -103,7 +123,63 @@
         </div>
       </ng-container>
       <ng-container *ngIf="tabactive === 'grid'">
-
+        <div class="row">
+          <div class="col-4" *ngFor="let coffee of data; let i = index;">
+            <mat-card class="example-card">
+              <img mat-card-image src="assets/images/coffee.jpeg" alt="Photo of a Shiba Inu">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{coffee?.category}}</mat-card-title>
+                <mat-card-subtitle>{{coffee?.grade}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  {{coffee?.description}}
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button>Order a Sample</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          <!-- <div class="col-4">
+            <mat-card class="example-card">
+              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Mild Arabica</mat-card-title>
+                <mat-card-subtitle>Typica</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  A 89 points cup score coffee, available in Bold, AA and BBB sizes. Intercopped with Vanilla, Hazelnut, Chocolate and floral aroma.
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button>Order a Sample</button>
+              </mat-card-actions>
+            </mat-card>
+          </div> -->
+          <!-- <div class="col-4">
+            <mat-card class="example-card">
+              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Mild Arabica</mat-card-title>
+                <mat-card-subtitle>Typica</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  A 89 points cup score coffee, available in Bold, AA and BBB sizes. Intercopped with Vanilla, Hazelnut, Chocolate and floral aroma.
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button>Order a Sample</button>
+              </mat-card-actions>
+            </mat-card>
+          </div> -->
+        </div>
+        
       </ng-container>
     </mat-tab>
   </mat-tab-group>

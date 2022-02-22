@@ -30,7 +30,7 @@
             [src]="project.plantation.description_video | safe: 'resourceUrl'"></iframe>
         </ng-container>
       </div>
-      <div class="window mt-4 mb-4">
+      <!-- <div class="window mt-4 mb-4">
         <div class="row">
           <div class="col-md-12 map-col">
             <div class="row">
@@ -44,27 +44,26 @@
               <div class="col-6">
                 <h2 class="map-section-heading">Plantation Overview</h2>
                 <h3 class="map-section-data">
-                  100% shade grown with ideal weather conditions and elevation. Arabica plantation over 50 years,
-                  combined with Vanilla & Pepper.
+                  {{ project?.plantation?.description }}
                 </h3>
               </div>
               <div class="col-6">
                 <h2 class="map-section-heading">Region Detail</h2>
                 <h3 class="map-section-data">
-                  Area is a rich natural rainforest consisting of mango, tamarind, jackfruit..
+                  {{ project?.plantation?.region_and_bio }}
                 </h3>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="col-md-4">
-      <mat-form-field class="full-width" appearance="outline">
+      <!-- <mat-form-field class="full-width" appearance="outline">
         <mat-label>Description</mat-label>
         <textarea rows="15" matInput placeholder="Feel free to describe briefly about your listing ..."
           [(ngModel)]="project.plantation.description" readonly></textarea>
-      </mat-form-field>
+      </mat-form-field> -->
       <mat-form-field appearance="outline" class="mt-2 full-width">
         <mat-label>Plantation Area (in acres)</mat-label>
         <input matInput [(ngModel)]="project.plantation.area" placeholder="in acres" type="number" readonly>
@@ -79,11 +78,11 @@
           <input matInput [(ngModel)]="project.plantation.rainfall" placeholder="in cms" type="number" readonly>
         </mat-form-field>
       </div>
-      <mat-form-field class="full-width" appearance="outline">
+      <!-- <mat-form-field class="full-width" appearance="outline">
         <mat-label>About Region & Bio Diversity</mat-label>
         <textarea rows="10" matInput placeholder="Mention about the region and bio diversity"
           [(ngModel)]="project.plantation.region_and_bio" readonly></textarea>
-      </mat-form-field>
+      </mat-form-field> -->
       <div class="mb-4">
         <ng-container *ngIf="project.plantation.csv == 'default_csv'">
           <img class="loading-placeholder" src="assets/svgs/no_sheet.svg">
@@ -97,6 +96,33 @@
         <input hidden type="file" #fileImportInput name="File Upload" id="csvFileUpload"
           (change)="fileChangeListener($event)" accept=".csv" />
         <app-view-table *ngIf="(isFilePresent$ | async)" [data]="data" [columns]="columns"></app-view-table>
+      </div>
+    </div>
+  </div>
+  <div class="window mt-4 mb-4">
+    <div class="row">
+      <div class="col-md-12 map-col">
+        <div class="row">
+          <div class="container">
+            <div class="map-container">
+              <app-maps></app-maps>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <h2 class="map-section-heading">Plantation Overview</h2>
+            <h3 class="map-section-data">
+              {{ project?.plantation?.description }}
+            </h3>
+          </div>
+          <div class="col-6">
+            <h2 class="map-section-heading">Region Detail</h2>
+            <h3 class="map-section-data">
+              {{ project?.plantation?.region_and_bio }}
+            </h3>
+          </div>
+        </div>
       </div>
     </div>
   </div>
