@@ -20,9 +20,10 @@ export class FilesService {
    * @param fileName 
    * @returns 
    */
-  getUploadURL(fileName: any) {
+  getUploadURL(fileName: any, projectId: string) {
     return this._HTTP.post(this.BASE_API_URL + '/signed-url', {
-      file_name: fileName
+      file_name: fileName,
+      project:  projectId
     }).toPromise()
   }
 
@@ -32,10 +33,22 @@ export class FilesService {
    * @param file 
    * @returns 
    */
-  uploadUsingSignedURL(url: any, file: File){
+  uploadUsingSignedURL(url: any, file: File, projectId: string) {
     let form = new FormData()
     form.append("file_name", file)
+    form.append("project", projectId)
     return this.httpWithoutInterceptor.put(url, form)
     .toPromise()
+  }
+
+  /**
+   * This function is responsible to fetch all the objects in a folder
+   * @param folder_name 
+   * @returns 
+   */
+  getFilesByFolders(folder_name: any){
+    return this._HTTP.post(this.BASE_API_URL + `/${folder_name}`, {
+      folder_name: folder_name
+    }).toPromise()
   }
 }

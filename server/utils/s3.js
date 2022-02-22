@@ -37,7 +37,7 @@ const S3 = {
             // Read content from the file
             const fileContent = fs.readFileSync(fileName)
 
-            // Setting up S3 upload parameters
+            // Setting up S3 parameters
             const params = {
                 Bucket: process.env.S3_BUCKET,
                 Key: `${userId}/${fileName}`, // File name you want to save as in S3
@@ -76,7 +76,7 @@ const S3 = {
     async getFileUrl(fileName) {
         return new Promise((resolve, reject) => {
 
-            // Setting up S3 upload parameters
+            // Setting up S3 parameters
             const params = {
                 Bucket: process.env.S3_BUCKET,
                 Key: `${fileName}`, // File name you want to get as in S3
@@ -87,6 +87,25 @@ const S3 = {
                 .then((url) => resolve(url))
                 .catch(() => reject())
 
+        })
+    },
+
+    async getObjects(params, out = []) {
+        return new Promise((resolve, reject) => {
+            s3.listObjectsV2(params)
+                .promise()
+                .then(({
+                    Contents,
+                    IsTruncated,
+                    NextContinuationToken
+                }) => {
+                    out.push(...Contents) 
+                    !IsTruncated ? resolve(out) 
+                    : resolve(S3.getObjects(Object.assign(params, {
+                            ContinuationToken: NextContinuationToken
+                        }), out))
+                })
+                .catch(() => reject([]))
         })
     }
 }

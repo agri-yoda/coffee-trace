@@ -105,7 +105,7 @@ export class PlantationComponent implements OnInit {
     const files = $event.srcElement.files
 
     // Upload the file to the bucket
-    let fileUploaded = await this.uploadFile(files[0])
+    let fileUploaded = await this.uploadFile(files[0], this.project._id)
 
     if (fileUploaded == true) {
 
@@ -135,10 +135,10 @@ export class PlantationComponent implements OnInit {
    * @param file 
    * @returns 
    */
-  getSignedUrl(file: File) {
+  getSignedUrl(file: File, projectId: string) {
     return new Promise((resolve, reject) => {
       let filesService = this._Injector.get(FilesService)
-      filesService.getUploadURL(file.name)
+      filesService.getUploadURL(file.name, projectId)
         .then((res: any) => resolve(res['url']))
         .catch(() => reject(null))
     })
@@ -149,11 +149,11 @@ export class PlantationComponent implements OnInit {
    * @param file 
    * @returns 
    */
-  uploadFile(file: any) {
+  uploadFile(file: any, projectId: string) {
     return new Promise(async (resolve, reject) => {
       let filesService = this._Injector.get(FilesService)
-      let url = await this.getSignedUrl(file)
-      filesService.uploadUsingSignedURL(url, file)
+      let url = await this.getSignedUrl(file, projectId)
+      filesService.uploadUsingSignedURL(url, file, projectId)
         .then(() => resolve(true))
         .catch(() => reject(false))
     })

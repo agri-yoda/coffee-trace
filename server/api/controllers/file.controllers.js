@@ -29,9 +29,11 @@ const FileControllers = {
         try {
 
             // FileName from body
-            const { file_name } = req.body
+            const { file_name, project } = req.body
 
-            S3.getUploadUrl(file_name, req.user._id)
+            console.log(req.body)
+
+            S3.getUploadUrl(file_name, project)
                 .then((url) => {
 
                     // Send Status 200 response
@@ -75,6 +77,39 @@ const FileControllers = {
             return SendError(res, error)
         }
 
+    },
+
+    async getObjectsByFolder(req, res, next) {
+        try {
+
+            // FileName from body
+            const {
+                folder_name,
+            } = req.params
+
+            // Setting up S3 parameters
+            const params = {
+                Bucket: process.env.S3_BUCKET,
+                Delimiter: '/',
+                Prefix: `${folder_name}/`,
+            }
+
+            S3.getObjects(params)
+                .then((data) => {
+
+                    // Send Status 200 response
+                    return res.status(200).json({
+                        message: 'Objects for the users fetched successfully!',
+                        data: data
+                    })
+                })
+                .catch((error) => {
+                    return SendError(res, error)
+                })
+
+        } catch (error) {
+            return SendError(res, error)
+        }
     }
 
 }
