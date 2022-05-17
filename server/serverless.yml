@@ -1,4 +1,4 @@
-service: coffee-trace-server
+service: coffee-trace-app
 
 custom:
   environment: ${file(env.yml)}
@@ -21,11 +21,11 @@ provider:
 functions:
   app:
     handler: lambda.universal
-    # vpc: 
-    #   securityGroupIds:
-    #     - ${self:custom.environment.SECURITY_GROUP_ID}
-    #   subnetIds:
-    #     - ${self:custom.environment.SUBNET_ID}
+    vpc: 
+      securityGroupIds:
+        - ${self:custom.environment.SECURITY_GROUP_ID}
+      subnetIds:
+        - ${self:custom.environment.SUBNET_ID}
     events:
       - http:
           path: /
