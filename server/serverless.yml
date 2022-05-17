@@ -1,4 +1,4 @@
-service: coffee-trace-app
+service: coffee-trace-server
 
 custom:
   environment: ${file(env.yml)}
