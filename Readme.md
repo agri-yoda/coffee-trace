@@ -86,7 +86,6 @@
 
 ### *"... Ok! ... I've finished the task, what now? ..."* 
 
-##  
 
 #### *⚠️ ...Please follow these rules to have your work ready to deploy:*
 
