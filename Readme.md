@@ -49,7 +49,7 @@
 **💻 command:** `git checkout -b bugfix_FormatPostContent`
 
 
-**⚠️ Important: **
+**⚠️ Important:**
 
 *  Before creating a branch, check if someone already started to work on this task and if there's already a branch created for this task, and if there is, **please fetch the branch with the command**:
 
