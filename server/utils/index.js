@@ -1,6 +1,9 @@
 // Authorization
 const Authorization = require('./auth')
 
+// Email Module
+const Email = require('./mail/email')
+
 // Password Module
 const Password = require('./password')
 
@@ -11,4 +14,4 @@ const { SendError } = require('./sendError')
 const S3 = require('./s3')
 
 // Export Utilities
-module.exports = { Authorization, Password, SendError, S3 }
+module.exports = { Authorization, Email, Password, SendError, S3 }

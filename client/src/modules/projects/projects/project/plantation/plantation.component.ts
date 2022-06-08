@@ -5,6 +5,7 @@ import { NgxCsvParser } from 'ngx-csv-parser';
 import { NgxCSVParserError } from 'ngx-csv-parser';
 import { FilesService } from 'src/modules/shared/services/files.service';
 import { ProjectsService } from 'src/modules/shared/services/projects.service';
+// import { MouseEvent } from '@agm/core';
 
 @Component({
   selector: 'app-plantation',
@@ -12,6 +13,43 @@ import { ProjectsService } from 'src/modules/shared/services/projects.service';
   styleUrls: ['./plantation.component.scss']
 })
 export class PlantationComponent implements OnInit {
+
+  zoom: number = 8;
+  
+  // initial center position for the map
+  lat: number = 51.673858;
+  lng: number = 7.815982;
+
+  // clickedMarker(label: string, index: number) {
+  //   console.log(`clicked the marker: ${label || index}`)
+  // }
+  
+  // mapClicked($event: MouseEvent) {
+  //   this.markers.push({
+  //     lat: $event.coords.lat,
+  //     lng: $event.coords.lng,
+  //     draggable: true
+  //   });
+  // }
+  
+  // markerDragEnd(m: marker, $event: MouseEvent) {
+  //   console.log('dragEnd', m, $event);
+  // }
+  
+  markers: marker[] = [
+	  {
+		  lat: 51.373858,
+		  lng: 7.215982,
+		  label: 'B',
+		  draggable: false
+	  },
+	  {
+		  lat: 51.723858,
+		  lng: 7.895982,
+		  label: 'C',
+		  draggable: true
+	  }
+  ]
 
   constructor(private _Injector: Injector, private ngxCsvParser: NgxCsvParser) { }
 
@@ -67,7 +105,7 @@ export class PlantationComponent implements OnInit {
     const files = $event.srcElement.files
 
     // Upload the file to the bucket
-    let fileUploaded = await this.uploadFile(files[0])
+    let fileUploaded = await this.uploadFile(files[0], this.project._id)
 
     if (fileUploaded == true) {
 
@@ -97,10 +135,10 @@ export class PlantationComponent implements OnInit {
    * @param file 
    * @returns 
    */
-  getSignedUrl(file: File) {
+  getSignedUrl(file: File, projectId: string) {
     return new Promise((resolve, reject) => {
       let filesService = this._Injector.get(FilesService)
-      filesService.getUploadURL(file.name)
+      filesService.getUploadURL(file.name, projectId)
         .then((res: any) => resolve(res['url']))
         .catch(() => reject(null))
     })
@@ -111,11 +149,11 @@ export class PlantationComponent implements OnInit {
    * @param file 
    * @returns 
    */
-  uploadFile(file: any) {
+  uploadFile(file: any, projectId: string) {
     return new Promise(async (resolve, reject) => {
       let filesService = this._Injector.get(FilesService)
-      let url = await this.getSignedUrl(file)
-      filesService.uploadUsingSignedURL(url, file)
+      let url = await this.getSignedUrl(file, projectId)
+      filesService.uploadUsingSignedURL(url, file, projectId)
         .then(() => resolve(true))
         .catch(() => reject(false))
     })
@@ -124,9 +162,7 @@ export class PlantationComponent implements OnInit {
   updatePlantationCSV(csv: any){
     return new Promise((resolve, reject)=>{
       let projectData = {
-        plantation: {
-          csv: csv
-        }
+        'plantation.csv': csv
       }
       let projectService = this._Injector.get(ProjectsService)
       projectService.updateProject(this.project._id, projectData)
@@ -142,4 +178,11 @@ export class PlantationComponent implements OnInit {
 
   // J+PGxpYm0yD3FRO1ICI0qkkGYeK988ekHmLHGL4m
   // AKIAZGEM2CPVE6VJH3DY
+}
+
+interface marker {
+	lat: number;
+	lng: number;
+	label?: string;
+	draggable: boolean;
 }

@@ -1,31 +1,43 @@
-<mat-spinner *ngIf="(isLoading$ | async)" color="accent"></mat-spinner>
+<mat-spinner class="container" *ngIf="(isLoading$ | async)" color="accent"></mat-spinner>
 
 <div class="container" *ngIf="!(isLoading$ | async)">
     <div class="row">
-        <div class="col-md-12">
-            <div class="window">
-                <mat-form-field appearance="outline" class="col-md-5">
-                    <mat-label>Project ID</mat-label>
-                    <input matInput [(ngModel)]="project._id" placeholder="Project ID" readonly>
-                    <mat-icon matSuffix>fingerprint</mat-icon>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="col-md-6">
-                    <mat-label>Project Name</mat-label>
-                    <input matInput [(ngModel)]="project.project_name" placeholder="Project Name" readonly>
-                    <mat-icon matSuffix>badge</mat-icon>
-                </mat-form-field>
-            </div>
-        </div>
         <div class="mt-4">
             <div class="col-md-12 window">
                 <h2>Key Documents</h2>
             </div>
-            <ng-container>
+            <!-- <ng-container>
                 <img class="loading-placeholder" src="assets/svgs/no_files.svg">
+            </ng-container> -->
+            <ng-container>
+                <div class="files-window">
+                    <button mat-raised-button color="blue-ryb" (click)="fileImportInput.click()">
+                        <mat-icon>cloud_upload</mat-icon> Upload
+                      </button>
+                      <input hidden type="file" #fileImportInput name="File Upload" id="fileUpload"
+                        (change)="fileChangeListener($event)" />
+                </div>
+                      <ng-container *ngIf="!(isLoading$ | async) && dataSource.data.length === 0">
+                        <img class="loading-placeholder" src="assets/svgs/no_files.svg">
+                      </ng-container>
+          
+                      <table mat-table [hidden]="!(!(isLoading$ | async) && dataSource.data.length > 0)" [dataSource]="dataSource"
+                        matSort class="mat-elevation-z8">
+          
+                        <ng-container *ngFor="let disCol of displayedColumns; let colIndex = index" matColumnDef="{{disCol}}">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ disCol }}</th>
+                          <td mat-cell *matCellDef="let element "> {{ element[disCol] }}
+                          </td>
+                        </ng-container>
+          
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+                      </table>
+          
+                      <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[10, 50, 100]" showFirstLastButtons>
+                      </mat-paginator>
             </ng-container>
-            <button mat-raised-button color="blue-ryb">
-                <mat-icon>cloud_upload</mat-icon> Upload Files
-            </button>
         </div>
     </div>
 </div>

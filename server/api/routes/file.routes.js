@@ -32,5 +32,12 @@ router.route('/signed-url')
         // To Upload
         .post(FileControllers.getSignedUploadUrl)
 
+
+// Route Definition
+router.route('/:folder_name')
+
+        // Get Objects List
+        .post(FileControllers.getObjectsByFolder)
+
 // Export Router
 module.exports = router

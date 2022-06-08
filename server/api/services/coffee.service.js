@@ -37,6 +37,65 @@ const CoffeeService = {
     },
 
     /**
+     * This function is responsible for fetching 20 recent coffees for current project
+     * @returns 
+     */
+    async getRecentCoffees(projectId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+
+                // Fetch all the coffees
+                const coffees = await Coffee
+                .find({ 'origin._plantation': projectId, active: true })
+                .limit(20)
+                .sort('-created_date') || []
+
+                // Resolve the promise
+                resolve(coffees)
+
+            } catch (error) {
+
+                // Catch the error and reject the promise
+                reject({
+                    error: error
+                })
+            }
+        })
+    },
+
+    /**
+     * This function is responsible for fetching next 5 recent coffees for current project
+     * @returns 
+     */
+     async getNextCoffees(lastCoffeeId, projectId) {
+        return new Promise(async (resolve, reject) => {
+            try {
+
+                // Find the Projects
+                const projects = await Project.find({
+                        _id: {
+                            $lte: lastCoffeeId
+                        },
+                        active: true,
+                        'origin._plantation': projectId
+                    })
+                    .limit(5)
+                    .sort('-created_date') || []
+
+                // Resolve the promise
+                resolve(projects)
+
+            } catch (error) {
+
+                // Catch the error and reject the promise
+                reject({
+                    error: error
+                })
+            }
+        })
+    },
+
+    /**
      * Create a new Coffee
      * @param {*} coffee_name 
      * @returns 
@@ -46,9 +105,9 @@ const CoffeeService = {
             try {
 
                 // Create the Coffee
-                const coffee = await Coffee.create(coffeeData)
+                const coffee = await Coffee.create(coffeeData.coffee)
 
-                // Pushing the Coffee into user's schema
+                // Pushing the Coffee into project's schema
                 await Project.findByIdAndUpdate(
                     coffee.origin._plantation,
                     { $push: { coffees: coffee } },

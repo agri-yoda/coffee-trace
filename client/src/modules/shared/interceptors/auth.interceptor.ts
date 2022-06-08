@@ -24,7 +24,6 @@ export class AuthInterceptor implements HttpInterceptor {
    * @param next 
    */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     if (this.authService.isLoggedIn()) {
       const tokenizedRequest = request.clone({
         setHeaders: {

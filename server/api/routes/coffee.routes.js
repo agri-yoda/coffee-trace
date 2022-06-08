@@ -22,6 +22,15 @@ router.route('/')
         // Create Project 
         .post(CoffeeControllers.createCoffee)
 
+// Get next 5 recent projects
+router.get('/next', CoffeeControllers.getRecentCoffees)
+
+// Route Definition
+router.route('/recent')
+
+        // Create Project 
+        .get(CoffeeControllers.getRecentCoffees)
+
 // Route definition
 router.route('/:coffeeId')
 
@@ -33,6 +42,11 @@ router.route('/:coffeeId')
 
         // Remove Project
         .delete(CoffeeControllers.removeCoffee)
+
+// router.route('/all/:projectId')
+
+//         // Get Project
+//         .get(CoffeeControllers.getAllCoffee)
 
 // Export Router
 module.exports = router

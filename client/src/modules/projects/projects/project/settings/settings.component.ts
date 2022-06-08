@@ -51,14 +51,13 @@ export class SettingsComponent implements OnInit {
     // Project Data
     let projectData = {
       project_name: this.project.project_name,
-      plantation: {
-        description: this.project.plantation.description,
-        area: this.project.plantation.area,
-        altitude: this.project.plantation.altitude,
-        rainfall: this.project.plantation.rainfall,
-        description_video: this.project.plantation.description_video,
-        region_and_bio: this.project.plantation.region_and_bio
-      }
+      profile_picture: this.project.profile_picture,
+      'plantation.description': this.project.plantation.description,
+      'plantation.area': this.project.plantation.area,
+      'plantation.altitude': this.project.plantation.altitude,
+      'plantation.rainfall': this.project.plantation.rainfall,
+      'plantation.description_video': this.project.plantation.description_video,
+      'plantation.region_and_bio': this.project.plantation.region_and_bio
     }
 
     // Update the Project

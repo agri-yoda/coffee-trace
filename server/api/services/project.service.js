@@ -247,10 +247,7 @@ const ProjectService = {
             try {
 
                 // Update the Project Data
-                const project = await Project.findOneAndUpdate({
-                    _id: projectId,
-                    _owner: requestUserId
-                }, {
+                const project = await Project.findByIdAndUpdate(projectId, {
                     $set: projectData
                 }, {
                     upsert: true,

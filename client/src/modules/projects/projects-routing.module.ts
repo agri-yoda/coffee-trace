@@ -27,6 +27,9 @@ const routes: Routes = [
           { path: 'settings', component: SettingsComponent },
           { path: 'tablesort', component: TableSortingExampleComponent }
         ]
+      },
+      {
+        path: ':id/coffee', component: CoffeeComponent
       }
     ]
   }

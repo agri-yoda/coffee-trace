@@ -1,0 +1,43 @@
+.widget {
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 20vw;
+    height: 200px;
+}
+
+.widget h2, .widget h3 {
+    font-size: 50px;
+    margin-top: 15px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.purple-bg, .bg-primary {
+    background: linear-gradient(0deg, #3023AE 0%, #7042BF 96.59%);
+    color: #ffffff;
+}
+.blue-bg, .bg-primary {
+    background: linear-gradient(180deg, #17CEC4 2.55%, #08AEEA 100%);
+    color: #ffffff;
+}
+.pink-bg, .bg-primary {
+    background: linear-gradient(180deg, #ED629A 0%, #C850C0 100%);
+    color: #ffffff;
+}
+.orange-bg, .bg-primary {
+    background: linear-gradient(180deg, #FF8308 0%, #FD4F00 100%);
+    color: #ffffff;
+}
+.center-it{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-subtext{
+    margin-bottom: 0px;
+}
+
+h1{
+    font: 400 18px / 32px Roboto, "Helvetica Neue", sans-serif;
+}

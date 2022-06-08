@@ -1,28 +1,17 @@
 
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {AfterViewInit, Component, OnInit, ViewChild, Injector} from '@angular/core';
-import {MatSort, Sort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { AfterViewInit, Component, Injector, Input, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SubSink } from 'subsink';
 import { UtilityService } from 'src/modules/shared/services/utility.service';
-export interface PeriodicElement {
-  BotanicalVariety: string;
-  Category: number;
-  PreparationMethod: number;
-  CupScore: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {Category: 1, BotanicalVariety: 'Hydrogen', PreparationMethod: 1.0079, CupScore: 'H'},
-  {Category: 2, BotanicalVariety: 'Helium', PreparationMethod: 4.0026, CupScore: 'He'},
-  {Category: 3, BotanicalVariety: 'Lithium', PreparationMethod: 6.941, CupScore: 'Li'},
-  {Category: 4, BotanicalVariety: 'Beryllium', PreparationMethod: 9.0122, CupScore: 'Be'},
-  {Category: 5, BotanicalVariety: 'Boron', PreparationMethod: 10.811, CupScore: 'B'},
-  {Category: 6, BotanicalVariety: 'Carbon', PreparationMethod: 12.0107, CupScore: 'C'},
-  {Category: 7, BotanicalVariety: 'Nitrogen', PreparationMethod: 14.0067, CupScore: 'N'},
-  {Category: 8, BotanicalVariety: 'Oxygen', PreparationMethod: 15.9994, CupScore: 'O'},
-  {Category: 9, BotanicalVariety: 'Fluorine', PreparationMethod: 18.9984, CupScore: 'F'},
-  {Category: 10, BotanicalVariety: 'Neon', PreparationMethod: 20.1797, CupScore: 'Ne'},
-];
+import { ProjectsService } from 'src/modules/shared/services/projects.service';
+import { CoffeeService } from 'src/modules/shared/services/coffee.service';
+
 @Component({
   selector: 'app-coffee',
   templateUrl: './coffee.component.html',
@@ -30,14 +19,71 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class CoffeeComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['Category', 'BotanicalVariety', 'PreparationMethod', 'CupScore'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
   tabactive = 'list';
+  projectId = this.activatedRoute.snapshot.paramMap.get('id')
+  projectsService = this._Injector.get(ProjectsService)
+  CoffeeService = this._Injector.get(CoffeeService)
 
-  constructor(private _liveAnnouncer: LiveAnnouncer,private _Injector: Injector) { }
-  
-  @ViewChild(MatSort) sort: MatSort;
+  constructor(
+    private _liveAnnouncer: LiveAnnouncer,
+    private _Injector: Injector,
+    private activatedRoute: ActivatedRoute,
+    private _Router: Router,
+    public dialog: MatDialog,
+    private coffeeService: CoffeeService) { }
 
+  // Utility Service
+  public utilityService = this._Injector.get(UtilityService)
+
+  // Datasource
+  dataSource = new MatTableDataSource([])
+
+  // Sort Table
+  @ViewChild(MatSort, { static: true }) sort: MatSort
+
+  // Paginator
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
+
+  // Is loading behaviour
+  isLoading$ = new BehaviorSubject(false)
+
+  // Columns list
+  @Input('columns') displayedColumns: string[] = [
+    'bean_sizes',
+    'botanical_variety',
+    'category',
+    'preparation_method',
+    'grade',
+    'cup_score'
+  ]
+
+  // Project Details
+  project: any = {}
+
+  // Coffee Data
+  data: any = []
+
+  async ngOnInit() {
+
+    // Start the Loader
+    this.isLoading$.next(true)
+
+    // Fetch the Project
+    this.project = await this.utilityService.getProject()
+
+    // Fill up the coffee data
+    this.data = await this.getRecentCoffee(this.project._id)
+
+    // Map the attributes
+    this.data = this.getAttributes(this.data)
+
+    // Populate datasource
+    this.populateDatasource(this.data)
+
+    // Stop the Loader
+    this.isLoading$.next(false)
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -48,24 +94,6 @@ export class CoffeeComponent implements AfterViewInit, OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  // Project Details
-  // project: any = {}
-  // Utility Service
-  // utilityService = this._Injector.get(UtilityService)
-  // // Is loading Behaviour
-  isLoading$ = new BehaviorSubject(false);
-
-  async ngOnInit() {
-    // Start the Loader
-    this.isLoading$.next(true)
-
-    // Fetch the Project
-    // this.project = await this.utilityService.getProject()
-
-    // Stop the Loader
-    this.isLoading$.next(false)
-  }
-  
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
@@ -74,8 +102,31 @@ export class CoffeeComponent implements AfterViewInit, OnInit {
     }
   }
 
-  viewchange(view: string){
+  viewchange(view: string) {
     this.tabactive = view;
+  }
+
+  getRecentCoffee(projectId: any) {
+    return new Promise((resolve, reject) => {
+      this.coffeeService.getRecentCoffee(projectId)
+        .then((res: any) => {
+          resolve(res['coffee'])
+        })
+        .catch((err) => {
+          console.error("Error - Fetch Recent Projects API :", err)
+          reject([])
+        })
+    })
+  }
+
+  getAttributes(data: any){
+    return data.map((coffee: any) => coffee.attributes)
+  }
+
+  populateDatasource(dataSet: any) {
+    this.dataSource = new MatTableDataSource(dataSet)
+    this.dataSource.sort = this.sort
+    this.dataSource.paginator = this.paginator
   }
 
 }
