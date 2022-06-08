@@ -94,6 +94,8 @@
 
 #### *1. Update your local `master` branch and rebase the branch you was working:*
 
+##  
+
 1.1. Checkout to master:
 
 `git checkout master`
@@ -128,6 +130,8 @@
 
 
 #### 3. Go to GitHub and open a Pull Request, the admin will finish the job!
+
+##  
 
 
 **⚠️ Important:** 
