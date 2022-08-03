@@ -1,12 +1,12 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-2">
             <app-create-project (project)="newProject($event)"></app-create-project>
         </div>
     </div>
-</div>
-<div class="container mt-4">
-    <mat-tab-group dynamicHeight>
+</div> -->
+
+<!-- <mat-tab-group dynamicHeight>
         <mat-tab label="Projects">
             <ng-container *ngIf="projects.length == 0">
                 <h2 class="loading-placeholder-header">Start by defining the projects ...</h2>
@@ -31,6 +31,35 @@
                 </div>
             </div>
         </mat-tab>
-    </mat-tab-group>
+    </mat-tab-group> -->
 
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <app-create-project (project)="newProject($event)"></app-create-project>
+</div>
+<div class="max-w-7xl mb-8 mx-auto px-4 sm:px-6 lg:px-8">
+    <div>
+        <h2 class="text-2xl font-extrabold text-gray-900">All Projects</h2>
+        <!-- <ng-container *ngIf="projects.length == 0">
+                <h2 class="loading-placeholder-header">Start by defining the projects ...</h2>
+                <img class="loading-placeholder" width="100%" height="100%" src="assets/svgs/no_projects.svg">
+            </ng-container> -->
+        <div class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6" *ngIf="projects.length > 0">
+            <div class="group relative" *ngFor="let project of projects; let index = index">
+                <app-project-card [archived]="false" [name]="project?.project_name" [coffeeTypesCount]="project?.coffees.length"
+                    [routerLink]="['/saas', 'projects', project?._id, 'plantation']"></app-project-card>
+            </div>
+        </div>
+
+        <!-- <ng-container *ngIf="archive_projects.length == 0">
+                <h2 class="loading-placeholder-header">You don't have any archived projects yet!</h2>
+                <img class="loading-placeholder" width="100%" height="100%" src="assets/svgs/no_projects.svg">
+            </ng-container> -->
+
+        <div class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6" *ngIf="projects.length > 0">
+            <div class="group relative opacity-75" *ngFor="let project of archive_projects; let index = index">
+                <app-project-card [archived]="true" [name]="project?.project_name" [coffeeTypesCount]="project?.coffees.length"
+                    [routerLink]="['/saas', 'projects', project?._id, 'plantation']"></app-project-card>
+            </div>
+        </div>
+    </div>
 </div>

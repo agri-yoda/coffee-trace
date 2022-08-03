@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // Http Client Module
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // NGX UI Loader Module
 import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from "ngx-ui-loader";
@@ -39,6 +39,8 @@ import { AuthInterceptor } from 'src/modules/shared/interceptors/auth.intercepto
 
     // App Routing Module
     AppRoutingModule,
+
+    // Mat Sort Module
     MatSortModule,
 
     // Browser Animations Module

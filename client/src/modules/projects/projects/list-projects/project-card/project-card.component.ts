@@ -11,6 +11,10 @@ export class ProjectCardComponent implements OnInit {
 
   @Input('name') name: string = 'New Project'
 
+  @Input('archived') archived: boolean = false
+
+  @Input('coffeeTypesCount') coffeeTypesCount: Number = 0
+
   ngOnInit(): void {
   }
 

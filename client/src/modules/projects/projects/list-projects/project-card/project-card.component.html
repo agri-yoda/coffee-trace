@@ -1,10 +1,13 @@
-<div class="card-wrap">
-    <div class="card">
-        <div class="card-bg">
-        </div>
-        <div class="card-info">
-            <h1 name="header">{{ name }}</h1>
-            <p name="content">More Details ... </p>
-        </div>
-    </div>
+<div
+    class="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+    <img src="https://coffee.alexflipnote.dev/random"
+        alt="Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug."
+        class="w-full h-full object-center object-cover">
 </div>
+<h3 class="mt-6 text-sm text-gray-500" *ngIf="archived == false">
+    <a>
+        <span class="absolute inset-0"></span>
+        {{ coffeeTypesCount }} coffee varieties
+    </a>
+</h3>
+<p class="text-base font-semibold text-gray-900">{{ name }}</p>

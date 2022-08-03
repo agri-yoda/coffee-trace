@@ -1,55 +1,124 @@
-<mat-sidenav-container (backdropClick)="this.sidenav.toggle()" [hasBackdrop]="'false'">
+<!-- <mat-sidenav-container (backdropClick)="this.sidenav.toggle()" [hasBackdrop]="'false'">
     <mat-sidenav #sidenav (keydown.escape)="this.sidenav.toggle()" [opened]="true" disableClose autosize [mode]="'side'">
 
-        <!-- Side Bar Menu starts -->
         <app-side-bar *ngIf="this.user" class="nav navbar-nav navbar-left" [sideNav]="sidenav"></app-side-bar>
-        <!-- Side Bar Menu ends -->
 
     </mat-sidenav>
 
     <mat-sidenav-content style="height: 100vh">
         <mat-toolbar *ngIf="user">
 
-            <!-- Side Bar Navigation Toggle Starts -->
             <button class="icon-button" mat-icon-button (click)="this.sidenav.toggle()" matTooltip="Toggle Menu">
                 <mat-icon>menu</mat-icon>
             </button>
-            <!-- Side Bar Navigation Toggle Ends -->
 
-            <!-- CT Logo -->
-            <!-- <mat-form-field class="example-full-width" appearance="legacy"> -->
                 <mat-icon>search</mat-icon>
                 <input placeholder="Search for data, users ...">
-            <!-- </mat-form-field> -->
-            <!-- CT Logo -->
 
 
-            <!-- Spacer -->
             <span class="spacer"></span>
-            <!-- Spacer -->
 
-            <!-- Dashboards -->
             <button class="icon-button" mat-icon-button>
                 <mat-icon>grid_view</mat-icon>
             </button>
-            <!-- Dashboards -->
 
-            <!-- Notifications -->
             <button class="icon-button" mat-icon-button matTooltip="Toggle Notifications">
                 <mat-icon>notifications</mat-icon>
             </button>
-            <!-- Notifications -->
 
-            <!-- Logout section -->
             <button class="icon-button" mat-icon-button matTooltip="Logout" (click)="logout()">
                 <mat-icon>power_settings_new</mat-icon>
             </button>
-            <!-- Logout section -->
 
         </mat-toolbar>
         <router-outlet></router-outlet>
 
     </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->
 
-<!-- <router-outlet></router-outlet> -->
+<div class="navbar bg-base-100 rounded-xl drop-shadow-xl">
+
+    <div class="navbar-start">
+        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center">
+            <li class="mr-1">
+                <a class="inline-block py-3 px-4 rounded-lg active" [routerLink]="['/saas', 'dashboard']">
+                    <mat-icon>dashboard</mat-icon>
+                    Dashboard
+                </a>
+            </li>
+            <li class="mr-1">
+                <a class="inline-block py-3 px-4 rounded-lg" [routerLink]="['/saas', 'projects', 'all']"
+                    routerLinkActive="router-link-active">
+                    <mat-icon>apps</mat-icon>
+                    Projects
+                </a>
+            </li>
+            <li class="mr-1">
+                <a class="inline-block py-3 px-4 rounded-lg" [routerLink]="['/saas', 'coffees']"
+                    routerLinkActive="router-link-active">
+                    <mat-icon>coffee</mat-icon>
+                    Coffee
+                </a>
+            </li>
+            <li class="mr-1">
+                <a class="inline-block py-3 px-4 rounded-lg" [routerLink]="['/saas', 'projects', 'all']"
+                    routerLinkActive="router-link-active">
+                    <mat-icon>campaign</mat-icon>
+                    Campaign
+                </a>
+            </li>
+            <li class="mr-1">
+                <a class="inline-block py-3 px-4 rounded-lg" [routerLink]="['/saas', 'projects', 'all']"
+                    routerLinkActive="router-link-active">
+                    <mat-icon>agriculture</mat-icon>
+                    Tools & Resources
+                </a>
+            </li>
+        </ul>
+      </div>
+    <div class="flex-none">
+
+        <button class="btn btn-ghost btn-circle">
+            <mat-icon>grid_view</mat-icon>
+        </button>
+
+        <button class="btn btn-ghost btn-circle">
+            <mat-icon>search</mat-icon>
+        </button>
+
+        <div class="indicator">
+            <button class="btn btn-ghost btn-circle">
+                <mat-icon>notifications</mat-icon>
+            </button>
+        </div>
+
+        <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                    <img src="https://placeimg.com/80/80/people" />
+                </div>
+            </label>
+            <ul class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                    <a>
+                        <mat-icon>person</mat-icon> Your Account
+                    </a>
+                </li>
+                <li> <a>
+                        <mat-icon>settings</mat-icon> Settings & Privacy
+                    </a>
+                <li>
+                    <a>
+                        <mat-icon>help</mat-icon> Help & Support
+                    </a>
+                </li>
+                <li>
+                    <button (click)="logout()">
+                        <mat-icon>power_settings_new</mat-icon> Logout
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

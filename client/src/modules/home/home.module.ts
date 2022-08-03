@@ -11,13 +11,15 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 // Modules
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HomeHeaderComponent } from './home-header/home-header.component';
 
 
 @NgModule({
   declarations: [
     SignUpComponent,
     SignInComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    HomeHeaderComponent
   ],
   imports: [
     CommonModule,

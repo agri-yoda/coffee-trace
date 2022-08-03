@@ -8,6 +8,34 @@ const { SendError } = require('../../utils')
 const AuthControllers = {
 
     /**
+     * Refresh Access Token Controller
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     * @returns 
+     */
+    async refreshAccessToken(req, res, next) {
+        try {
+
+            // call the signIn function
+            AuthService.refreshAccessToken(req.headers.authorization.split(' ')[1])
+                .then((data) => {
+
+                    // Send Status 200 response
+                    return res.status(200).json({
+                        message: 'Token has been refreshed successfully!',
+                        accessToken: data.token
+                    })
+                })
+                .catch((error) => {
+                    return res.status(400).json(error)
+                })
+        } catch (error) {
+            return SendError(res, error)
+        }
+    },
+
+    /**
      * Sign-In Controller
      * @param {*} req 
      * @param {*} res 
@@ -28,11 +56,11 @@ const AuthControllers = {
                     return res.status(200).json({
                         message: 'User signed In Successfully!',
                         user: data.user,
-                        token: data.token
+                        accessToken: data.token
                     })
                 })
                 .catch((error) => {
-                    return SendError(res, error)
+                    return res.status(400).json(error)
                 })
         } catch (error) {
             return SendError(res, error)
@@ -60,11 +88,11 @@ const AuthControllers = {
                     return res.status(200).json({
                         message: 'User signed up successfully!',
                         user: data.user,
-                        token: data.token
+                        accessToken: data.token
                     })
                 })
                 .catch((error) => {
-                    return SendError(res, error)
+                    return res.status(400).json(error)
                 })
 
         } catch (error) {
@@ -99,7 +127,7 @@ const AuthControllers = {
                     })
                 })
                 .catch((error) => {
-                    return SendError(res, error)
+                    return res.status(400).json(error)
                 })
 
         } catch (error) {

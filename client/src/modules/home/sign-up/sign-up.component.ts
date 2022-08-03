@@ -32,7 +32,7 @@ export class SignUpComponent implements OnInit {
       first_name: [null, Validators.required],
       last_name: [null, Validators.required],
       password: [null, Validators.required],
-      confirm: [null, Validators.required],
+      c_password: [null, Validators.required],
       terms: [null, Validators.required],
       type: [null, Validators.required]
     })

@@ -1,0 +1,27 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+   
+    <div class="text-4xl mb-4 mt-4 font-extrabold tracking-tight">Coffee Inventory</div>
+
+    <div class="overflow-x-auto w-full">
+        <!-- <ng-container *ngIf="!(isLoading$ | async) && dataSource.data.length === 0">
+            <img class="loading-placeholder" src="assets/svgs/no_files.svg">
+          </ng-container> -->
+
+          <table mat-table 
+            [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+            <ng-container *ngFor="let disCol of displayedColumns; let colIndex = index" matColumnDef="{{disCol}}">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ disCol }}</th>
+              <td mat-cell *matCellDef="let element "> {{ element[disCol] }}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          </table>
+
+          <mat-paginator class="mat-elevation-z8 drop-shadow-xl" [pageSizeOptions]="[10, 50, 100]" showFirstLastButtons>
+          </mat-paginator>
+    </div>
+</div>

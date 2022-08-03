@@ -14,6 +14,13 @@ const routes: Routes = [
           .then((module) => module.DashboardModule)
       },
 
+      // 'coffees' ROUTE
+      {
+        path: 'coffees',
+        loadChildren: () => import('src/modules/coffee/coffee.module')
+          .then((module) => module.CoffeeModule)
+      },
+
       // 'projects' ROUTE
       {
         path: 'projects',

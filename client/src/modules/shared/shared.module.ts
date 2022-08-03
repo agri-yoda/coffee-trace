@@ -21,6 +21,9 @@ import { HotTableModule } from '@handsontable/angular';
 import { CustomTableComponent } from './components/custom-table/custom-table.component';
 import { ViewTableComponent } from './components/view-table/view-table.component';
 
+// Charts Module
+import { NgChartsModule, ThemeService } from 'ng2-charts';
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -35,7 +38,8 @@ import { ViewTableComponent } from './components/view-table/view-table.component
     CommonModule,
     MaterialModule,
     RouterModule,
-    HotTableModule
+    HotTableModule,
+    NgChartsModule
   ],
   exports: [
     NavbarComponent,
@@ -44,7 +48,11 @@ import { ViewTableComponent } from './components/view-table/view-table.component
     SideBarComponent,
     MaterialModule,
     SafePipe,
-    ViewTableComponent
+    ViewTableComponent,
+    NgChartsModule
+  ],
+  providers: [
+    ThemeService
   ]
 })
 export class SharedModule { }

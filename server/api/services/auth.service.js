@@ -41,6 +41,44 @@ const AuthService = {
     },
 
     /**
+     * This function is responsible for refreshing the access token
+     * @param {*} accessToken 
+     * @returns 
+     */
+    async refreshAccessToken(accessToken) {
+        return new Promise(async (resolve, reject) => {
+            try {
+
+                // Create the signed token
+                const token = jwt.sign({ originalToken: accessToken }, process.env.JWT_ACCESS_KEY, {
+                    expiresIn: process.env.JWT_ACCESS_TIME
+                })
+
+                // If exists then, pass the request
+                if (!!token) {
+
+                    // Resolve the promise
+                    resolve({ token: token })
+
+                } else {
+                    return res.status(400).json({
+                        message: 'Bad request, refreshing the access token has been failed!'
+                    })
+                }
+
+            } catch (error) {
+
+                console.log(error)
+
+                // Catch the error and reject the promise
+                reject({ error: error })
+            }
+
+        })
+
+    },
+
+    /**
      * This function is responsible for signing out the user
      * @param {*} userId 
      * @param {*} token 
@@ -116,7 +154,7 @@ const AuthService = {
             } catch (error) {
 
                 // Catch the error and reject the promise
-                reject(error)
+                reject({ error: error })
             }
         })
     },
@@ -147,11 +185,11 @@ const AuthService = {
 
                 // User Data
                 let data = {
-                    first_name: userData.first_name,
-                    last_name: userData.last_name,
-                    full_name: userData.first_name + userData.last_name,
+                    first_name: userData.name.split(" ")[0],
+                    last_name: userData.name.split(" ").slice(1).join(" "),
+                    full_name: userData.name,
                     email: userData.email,
-                    type: userData.type || 'grower',
+                    role: userData.type || 'grower',
                     password: encryptedPass.password
                 }
 

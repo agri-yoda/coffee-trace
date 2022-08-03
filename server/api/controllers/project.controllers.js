@@ -29,7 +29,7 @@ const ProjectControllers = {
                     })
                 })
                 .catch((error) => {
-                    return SendError(res, error)
+                    return res.status(400).json(error)
                 })
 
         } catch (error) {
@@ -59,7 +59,7 @@ const ProjectControllers = {
                     })
                 })
                 .catch((error) => {
-                    return SendError(res, error)
+                    return res.status(400).json(error)
                 })
 
         } catch (error) {
@@ -86,7 +86,7 @@ const ProjectControllers = {
                     })
                 })
                 .catch((error) => {
-                    return SendError(res, error)
+                    return res.status(400).json(error)
                 })
 
         } catch (error) {
@@ -113,7 +113,7 @@ const ProjectControllers = {
                     })
                 })
                 .catch((error) => {
-                    return SendError(res, error)
+                    return res.status(400).json(error)
                 })
 
         } catch (error) {
@@ -143,7 +143,7 @@ const ProjectControllers = {
                     })
                 })
                 .catch((error) => {
-                    return SendError(res, error)
+                    return res.status(400).json(error)
                 })
 
         } catch (error) {
@@ -177,7 +177,7 @@ const ProjectControllers = {
                     })
                 })
                 .catch((error) => {
-                    return SendError(res, error)
+                    return res.status(400).json(error)
                 })
 
         } catch (error) {
@@ -208,7 +208,7 @@ const ProjectControllers = {
                     })
                 })
                 .catch((error) => {
-                    return SendError(res, error)
+                    return res.status(400).json(error)
                 })
 
         } catch (error) {

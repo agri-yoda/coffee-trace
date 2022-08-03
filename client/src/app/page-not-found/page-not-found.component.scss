@@ -1,22 +1,11 @@
-.error-template {
-    padding: 40px 15px;
-    text-align: center;
-  }
-  
-  .error-actions {
-    margin-top: 15px;
-    margin-bottom: 15px;
-  }
-  
-  .error-actions .btn {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-right: 10px;
-  }
-  
-  .material-icons{
-    vertical-align: middle;
-    font-size: 30px;
-  }
+.page-wrap {
+    min-height: 100vh;
+}
+
+img {
+  display: block;
+  margin: auto;
+  max-width: 60%;
+  max-height: 60%;
+}
   

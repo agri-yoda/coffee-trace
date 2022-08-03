@@ -40,7 +40,7 @@ export class SignInComponent implements OnInit {
     let user = await this.signIn(this.form.value)
     .then((res: any) => {
       let user = res['user']
-      let token = res['token']
+      let token = res['accessToken']
       sessionStorage.setItem('token', token)
       sessionStorage.setItem('user', JSON.stringify(user))
       this.redirectUser()
